@@ -10,7 +10,7 @@ const resume = {
     github: "#",
   },
   summary:
-    "Full-Stack Developer with hands-on production experience in React.js, Next.js, Java, and AWS — including serverless architecture with Lambda, API Gateway, and DynamoDB (GSI). Built and scaled real-world healthcare and energy monitoring platforms.",
+    "Give me a problem — I'll ship the solution. I build fast, I build clean, and I don't stop until it works in production. React on the front, Java + AWS on the back, zero excuses in between. Full stack by skill, problem-solver by nature.",
   experience: [
     {
       id: "exp1",
@@ -73,7 +73,7 @@ const resume = {
   ],
 };
 
-// ─── GLOBAL STYLES (injected once) ─────────────────────────────────────────
+// ─── GLOBAL STYLES ──────────────────────────────────────────────────────────
 const GlobalStyles = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Share+Tech+Mono&family=DM+Sans:wght@400;500&display=swap');
@@ -89,8 +89,48 @@ const GlobalStyles = () => (
     @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
     @keyframes codeFade{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
     @keyframes lineGrow{from{width:0}to{width:100%}}
+    @keyframes slideInLeft{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:none}}
+    @keyframes slideInRight{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:none}}
+    @keyframes slideInUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+    @keyframes scaleIn{from{opacity:0;transform:scale(0.85)}to{opacity:1;transform:scale(1)}}
+    @keyframes glowPulse{0%,100%{box-shadow:0 0 0 rgba(0,255,136,0)}50%{box-shadow:0 0 30px rgba(0,255,136,0.15)}}
+    @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+    @keyframes borderDraw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0% 0 0)}}
+    @keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1)}
+    .reveal.visible{opacity:1;transform:none}
+    .reveal-left{opacity:0;transform:translateX(-50px);transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1)}
+    .reveal-left.visible{opacity:1;transform:none}
+    .reveal-right{opacity:0;transform:translateX(50px);transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1)}
+    .reveal-right.visible{opacity:1;transform:none}
+    .reveal-scale{opacity:0;transform:scale(0.9);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1)}
+    .reveal-scale.visible{opacity:1;transform:scale(1)}
+    
+    .stagger-1{transition-delay:0.05s}
+    .stagger-2{transition-delay:0.12s}
+    .stagger-3{transition-delay:0.19s}
+    .stagger-4{transition-delay:0.26s}
+    .stagger-5{transition-delay:0.33s}
+    .stagger-6{transition-delay:0.4s}
   `}</style>
 );
+
+// ─── SCROLL REVEAL HOOK ──────────────────────────────────────────────────────
+function useScrollReveal() {
+  useEffect(() => {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    const els = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale");
+    els.forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+}
 
 // ─── SECTION LABEL ──────────────────────────────────────────────────────────
 const SL = ({ n, label }) => (
@@ -110,17 +150,25 @@ const Divider = () => (
   <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(to right, transparent, rgba(0,255,136,0.18), transparent)" }} />
 );
 
-// ─── TYPEWRITER ─────────────────────────────────────────────────────────────
-const PHRASES = ["Full-Stack Developer", "React / Next.js Engineer", "Java + AWS Architect", "UI Performance Nerd", "Serverless Builder"];
+// ─── TYPEWRITER ──────────────────────────────────────────────────────────────
+// "Full-Stack Developer" is always static. The rotating part is the suffix line.
+const PHRASES = [
+  " | React · Next.js · Java · Spring Boot · AWS | UI to Cloud · End-to-End",
+  " | Java · AWS · DynamoDB · Lambda | Serverless Architecture",
+  " | Node.js · Spring Boot · REST APIs | Backend Specialist",
+  " | React · Next.js · Tailwind | UI Performance Nerd",
+  " | AI Enthusiast · Full-Stack Builder | End-to-End",
+];
+
 function TypeWriter() {
   const [text, setText] = useState("");
   const [phraseIdx, setPhraseIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
   const [pause, setPause] = useState(false);
   useEffect(() => {
-    if (pause) { const t = setTimeout(() => setPause(false), 1400); return () => clearTimeout(t); }
+    if (pause) { const t = setTimeout(() => setPause(false), 1600); return () => clearTimeout(t); }
     const current = PHRASES[phraseIdx];
-    const speed = deleting ? 42 : 78;
+    const speed = deleting ? 18 : 45;
     const t = setTimeout(() => {
       if (!deleting) {
         setText(current.slice(0, text.length + 1));
@@ -133,10 +181,11 @@ function TypeWriter() {
     return () => clearTimeout(t);
   }, [text, deleting, pause, phraseIdx]);
   return (
-    <span style={{ color: "#00ff88", fontFamily: "'Share Tech Mono', monospace", fontSize: "clamp(1rem, 2.5vw, 1.4rem)" }}>
-      {text}
-      <span style={{ display: "inline-block", width: "3px", height: "1em", background: "#00ff88", verticalAlign: "middle", marginLeft: "3px", animation: "blink 0.9s steps(1) infinite" }} />
-    </span>
+    <div style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "clamp(0.7rem, 1.5vw, 0.88rem)", lineHeight: 1.5, minHeight: "1.4em" }}>
+      <span style={{ color: "#00ff88", letterSpacing: "0.05em" }}>Full-Stack Developer</span>
+      <span style={{ color: "rgba(0,212,255,0.8)" }}>{text}</span>
+      <span style={{ display: "inline-block", width: "2px", height: "0.85em", background: "#00d4ff", verticalAlign: "middle", marginLeft: "2px", animation: "blink 0.9s steps(1) infinite" }} />
+    </div>
   );
 }
 
@@ -161,7 +210,7 @@ function Navbar({ active }) {
   );
 }
 
-// ─── CODE PANEL (right side of hero) ─────────────────────────────────────────
+// ─── CODE PANEL ──────────────────────────────────────────────────────────────
 function CodePanel() {
   const lines = [
     { indent: 0, tokens: [{ c: "rgba(255,255,255,0.2)", t: "// madhur.config.js" }] },
@@ -169,27 +218,33 @@ function CodePanel() {
     { indent: 0, tokens: [{ c: "#a855f7", t: "const " }, { c: "#00d4ff", t: "developer" }, { c: "#fff", t: " = {" }] },
     { indent: 1, tokens: [{ c: "#00ff88", t: "name" }, { c: "#fff", t: ": " }, { c: "#ff6b35", t: '"Madhur Pathak"' }, { c: "#fff", t: "," }] },
     { indent: 1, tokens: [{ c: "#00ff88", t: "role" }, { c: "#fff", t: ": " }, { c: "#ff6b35", t: '"Full-Stack Developer"' }, { c: "#fff", t: "," }] },
-    { indent: 1, tokens: [{ c: "#00ff88", t: "stack" }, { c: "#fff", t: ": [" }, { c: "#ff6b35", t: '"React"' }, { c: "#fff", t: ", " }, { c: "#ff6b35", t: '"Next.js"' }, { c: "#fff", t: ", " }, { c: "#ff6b35", t: '"Java"' }, { c: "#fff", t: ", " }, { c: "#ff6b35", t: '"AWS"' }, { c: "#fff", t: "]," }] },
+    { indent: 1, tokens: [{ c: "#00ff88", t: "stack" }, { c: "#fff", t: ": [" }, { c: "#ff6b35", t: '"React"' }, { c: "#fff", t: ", " }, { c: "#ff6b35", t: '"Next.js"' }, { c: "#fff", t: ", " }, { c: "#ff6b35", t: '"Java"' }, { c: "#fff", t: "," }] },
+    { indent: 2, tokens: [{ c: "#ff6b35", t: '"Node.js"' }, { c: "#fff", t: ", " }, { c: "#ff6b35", t: '"Spring Boot"' }, { c: "#fff", t: ", " }, { c: "#ff6b35", t: '"AWS"' }, { c: "#fff", t: "]," }] },
     { indent: 0, tokens: [] },
     { indent: 1, tokens: [{ c: "#00ff88", t: "experience" }, { c: "#fff", t: ": {" }] },
-    { indent: 2, tokens: [{ c: "#00d4ff", t: "years" }, { c: "#fff", t: ": " }, { c: "#ff6b35", t: "1" }, { c: "#fff", t: "," }] },
+    { indent: 2, tokens: [{ c: "#00d4ff", t: "years" }, { c: "#fff", t: ": " }, { c: "#ff6b35", t: '"1+"' }, { c: "#fff", t: "," }] },
     { indent: 2, tokens: [{ c: "#00d4ff", t: "type" }, { c: "#fff", t: ": " }, { c: "#ff6b35", t: '"production"' }, { c: "#fff", t: "," }] },
-    { indent: 2, tokens: [{ c: "#00d4ff", t: "domain" }, { c: "#fff", t: ": [" }, { c: "#ff6b35", t: '"healthcare"' }, { c: "#fff", t: ", " }, { c: "#ff6b35", t: '"energy"' }, { c: "#fff", t: "]," }] },
     { indent: 1, tokens: [{ c: "#fff", t: "}," }] },
     { indent: 0, tokens: [] },
-    { indent: 1, tokens: [{ c: "#00ff88", t: "passion" }, { c: "#fff", t: ": " }, { c: "#ff6b35", t: '"fullstack"' }, { c: "#fff", t: "," }] },
+    { indent: 1, tokens: [{ c: "#00ff88", t: "passion" }, { c: "#fff", t: ": [" }, { c: "#ff6b35", t: '"fullstack"' }, { c: "#fff", t: ", " }, { c: "#ff6b35", t: '"ai enthusiast"' }, { c: "#fff", t: "]," }] },
     { indent: 1, tokens: [{ c: "#00ff88", t: "coffee" }, { c: "#fff", t: ": " }, { c: "#00d4ff", t: "Infinity" }, { c: "#fff", t: "," }] },
     { indent: 1, tokens: [{ c: "#00ff88", t: "available" }, { c: "#fff", t: ": " }, { c: "#00d4ff", t: "true" }, { c: "#fff", t: "," }] },
-    { indent: 1, tokens: [{ c: "#00ff88", t: "location" }, { c: "#fff", t: ": " }, { c: "#ff6b35", t: '"Bangalore, IN 🇮🇳"' }, { c: "#fff", t: "," }] },
+    { indent: 1, tokens: [{ c: "#00ff88", t: "location" }, { c: "#fff", t: ": " }, { c: "#ff6b35", t: '"Bangalore 🇮🇳"' }, { c: "#fff", t: "," }] },
     { indent: 0, tokens: [{ c: "#fff", t: "};" }] },
     { indent: 0, tokens: [] },
     { indent: 0, tokens: [{ c: "rgba(255,255,255,0.2)", t: "// current mission" }] },
     { indent: 0, tokens: [{ c: "#a855f7", t: "export default" }, { c: "#fff", t: " " }, { c: "#00d4ff", t: "developer" }, { c: "#fff", t: ";" }] },
   ];
 
+  // Tech floating badges (replacing the old metric ones)
+  const floatingTechs = [
+    { label: "React.js", color: "#00d4ff", top: -14, right: -14, delay: "0s" },
+    { label: "Java", color: "#00ff88", bottom: 40, right: -22, delay: "1s" },
+    { label: "AWS", color: "#ff6b35", bottom: -14, left: 20, delay: "0.5s" },
+  ];
+
   return (
     <div style={{ position: "relative", animation: "codeFade 0.9s ease 0.5s both", flexShrink: 0 }}>
-      {/* Window chrome */}
       <div style={{ border: "1px solid rgba(0,255,136,0.18)", background: "rgba(0,0,0,0.55)", backdropFilter: "blur(10px)", overflow: "hidden" }}>
         {/* Title bar */}
         <div style={{ background: "rgba(0,255,136,0.05)", borderBottom: "1px solid rgba(0,255,136,0.12)", padding: "10px 16px", display: "flex", alignItems: "center", gap: 8 }}>
@@ -208,11 +263,8 @@ function CodePanel() {
         <div style={{ padding: "1.2rem 0", fontFamily: "'Share Tech Mono', monospace", fontSize: "0.8rem", lineHeight: 1.85, minWidth: 380 }}>
           {lines.map((line, li) => (
             <div key={li} style={{ display: "flex", alignItems: "center", paddingLeft: "0", animation: `fadeUp 0.4s ease ${0.6 + li * 0.04}s both` }}>
-              {/* Line number */}
               <span style={{ color: "rgba(255,255,255,0.12)", fontSize: "0.65rem", minWidth: "2.8rem", textAlign: "right", paddingRight: "1.2rem", userSelect: "none" }}>{li + 1}</span>
-              {/* Left border accent for active lines */}
-              <div style={{ width: 2, alignSelf: "stretch", background: li === 7 || li === 8 || li === 9 || li === 10 || li === 11 ? "rgba(0,255,136,0.25)" : "transparent", marginRight: "0.8rem", flexShrink: 0 }} />
-              {/* Tokens */}
+              <div style={{ width: 2, alignSelf: "stretch", background: li >= 8 && li <= 11 ? "rgba(0,255,136,0.25)" : "transparent", marginRight: "0.8rem", flexShrink: 0 }} />
               <span style={{ paddingLeft: `${line.indent * 1.4}rem` }}>
                 {line.tokens.map((tok, ti) => (
                   <span key={ti} style={{ color: tok.c }}>{tok.t}</span>
@@ -232,16 +284,19 @@ function CodePanel() {
         </div>
       </div>
 
-      {/* Floating badges around the panel */}
-      <div style={{ position: "absolute", top: -14, right: -14, background: "#00ff88", color: "#06060a", fontFamily: "'Share Tech Mono', monospace", fontSize: "0.62rem", padding: "5px 12px", letterSpacing: "0.1em", fontWeight: 700, animation: "floatY 3s ease infinite" }}>
-        AVAILABLE
-      </div>
-      <div style={{ position: "absolute", bottom: 40, right: -18, background: "rgba(0,0,0,0.8)", border: "1px solid rgba(168,85,247,0.4)", color: "#a855f7", fontFamily: "'Share Tech Mono', monospace", fontSize: "0.6rem", padding: "5px 12px", letterSpacing: "0.08em", animation: "floatY 4s ease 1s infinite" }}>
-        &lt;1s API response
-      </div>
-      <div style={{ position: "absolute", bottom: -14, left: 20, background: "rgba(0,0,0,0.8)", border: "1px solid rgba(0,212,255,0.3)", color: "#00d4ff", fontFamily: "'Share Tech Mono', monospace", fontSize: "0.6rem", padding: "5px 12px", animation: "floatY 3.5s ease 0.5s infinite" }}>
-        15+ Lambda functions
-      </div>
+      {/* Tech floating badges */}
+      {floatingTechs.map(({ label, color, top, bottom, left, right, delay }) => (
+        <div key={label} style={{
+          position: "absolute", top, bottom, left, right,
+          background: "rgba(0,0,0,0.85)", border: `1px solid ${color}60`,
+          color, fontFamily: "'Share Tech Mono', monospace", fontSize: "0.6rem",
+          padding: "5px 12px", letterSpacing: "0.08em", fontWeight: 600,
+          animation: `floatY 3.5s ease ${delay} infinite`,
+          whiteSpace: "nowrap"
+        }}>
+          {label}
+        </div>
+      ))}
     </div>
   );
 }
@@ -279,55 +334,39 @@ function Hero() {
     <section id="hero" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px clamp(1.5rem, 6vw, 6rem) 4rem", position: "relative", overflow: "hidden" }}>
       <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.45 }} />
 
-      {/* Two-column layout */}
       <div style={{ position: "relative", zIndex: 2, display: "grid", gridTemplateColumns: "1fr auto", gap: "4rem", alignItems: "center", width: "100%" }}>
-
-        {/* LEFT — text content */}
+        {/* LEFT */}
         <div style={{ maxWidth: 620 }}>
-          {/* Init label */}
           <p style={{ fontFamily: "'Share Tech Mono', monospace", color: "#00ff88", fontSize: "0.75rem", letterSpacing: "0.28em", marginBottom: "1.4rem", opacity: 0.8, animation: "fadeUp 0.6s ease both" }}>
             // HELLO WORLD — INITIALIZING...
           </p>
 
-          {/* Name */}
-          <h1 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "clamp(2.8rem, 6.5vw, 6.2rem)", lineHeight: 0.95, letterSpacing: "-0.035em", color: "#fff", marginBottom: "1.1rem", animation: "fadeUp 0.7s ease 0.1s both" }}>
-            <span style={{ display: "block", WebkitTextStroke: "1px rgba(255,255,255,0.13)", color: "transparent", fontSize: "clamp(1.8rem, 4.5vw, 4.2rem)", fontWeight: 700, marginBottom: "0.1em" }}>
+          {/* Name: "Madhur" gets vibrant gradient, "Pathak" is white */}
+          <h1 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "clamp(2.8rem, 6.5vw, 6.2rem)", lineHeight: 0.95, letterSpacing: "-0.035em", marginBottom: "1.1rem", animation: "fadeUp 0.7s ease 0.1s both" }}>
+            <span style={{
+              display: "block",
+              fontSize: "clamp(1.8rem, 4.5vw, 4.2rem)",
+              fontWeight: 700,
+              marginBottom: "0.08em",
+              background: "linear-gradient(135deg, #00ff88 0%, #00d4ff 50%, #a855f7 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}>
               {resume.name.split(" ")[0]}
             </span>
-            {resume.name.split(" ")[1]}
+            <span style={{ color: "#fff" }}>{resume.name.split(" ")[1]}</span>
           </h1>
 
-          {/* Typewriter role */}
-          <div style={{ marginBottom: "0.9rem", animation: "fadeUp 0.7s ease 0.2s both", minHeight: "2rem" }}>
+          {/* Typewriter: static "Full-Stack Developer" + rotating suffix */}
+          <div style={{ marginBottom: "1.8rem", animation: "fadeUp 0.7s ease 0.2s both" }}>
             <TypeWriter />
           </div>
 
-          {/* Stack line */}
-          <div style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.7rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.08em", marginBottom: "1.6rem", animation: "fadeUp 0.7s ease 0.25s both", lineHeight: 1.6 }}>
-            <span style={{ color: "rgba(0,255,136,0.5)" }}>Full-Stack Developer</span>
-            <span style={{ color: "rgba(255,255,255,0.2)", margin: "0 8px" }}>|</span>
-            <span>React · Next.js · Java · Spring Boot · AWS</span>
-            <span style={{ color: "rgba(255,255,255,0.2)", margin: "0 8px" }}>|</span>
-            <span>UI to Cloud · End-to-End</span>
-          </div>
-
-          {/* Exp badge row */}
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.8rem", animation: "fadeUp 0.7s ease 0.3s both", flexWrap: "wrap" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", background: "rgba(0,255,136,0.07)", border: "1px solid rgba(0,255,136,0.2)", padding: "6px 14px" }}>
-              <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#00ff88", animation: "pulse 1.5s ease infinite" }} />
-              <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.68rem", color: "#00ff88", letterSpacing: "0.1em" }}>1+ yr production experience</span>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", background: "rgba(168,85,247,0.07)", border: "1px solid rgba(168,85,247,0.2)", padding: "6px 14px" }}>
-              <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.68rem", color: "#a855f7", letterSpacing: "0.08em" }}>Healthcare &amp; Energy platforms</span>
-            </div>
-          </div>
-
-          {/* Summary */}
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(0.86rem, 1.6vw, 0.97rem)", color: "rgba(255,255,255,0.48)", lineHeight: 1.9, marginBottom: "2.4rem", animation: "fadeUp 0.7s ease 0.35s both" }}>
             {resume.summary}
           </p>
 
-          {/* CTA buttons */}
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", animation: "fadeUp 0.7s ease 0.45s both" }}>
             <button onClick={() => go("experience")} style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.73rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#06060a", background: "#00ff88", border: "none", padding: "13px 26px", cursor: "pointer", clipPath: "polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))", transition: "all 0.2s" }}
               onMouseEnter={e => { e.currentTarget.style.background = "#00cc6a"; e.currentTarget.style.transform = "translateY(-2px)"; }}
@@ -373,7 +412,7 @@ function About() {
       <Divider />
       <SL n={1} label="about" />
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
-        <div>
+        <div className="reveal-left">
           <h2 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "clamp(2rem,5vw,3.4rem)", letterSpacing: "-0.03em", color: "#fff", marginBottom: "1.5rem", lineHeight: 1.05 }}>
             Building the <span style={{ color: "#00ff88" }}>Future</span>,<br />
             <span style={{ WebkitTextStroke: "1px rgba(255,255,255,0.18)", color: "transparent" }}>One Function</span> at a Time.
@@ -385,9 +424,9 @@ function About() {
             Currently scaling a healthcare platform at AlgoFlowAI. When I'm not writing code, I'm thinking about performance, developer experience, and making complex systems feel simple.
           </p>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
-          {facts.map(([icon, label, value]) => (
-            <div key={label} style={{ border: "1px solid rgba(0,255,136,0.1)", padding: "1.1rem 1.4rem", background: "rgba(255,255,255,0.01)", display: "flex", alignItems: "center", gap: "1rem", transition: "all 0.2s" }}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1px" }} className="reveal-right">
+          {facts.map(([icon, label, value], i) => (
+            <div key={label} className={`reveal stagger-${i + 1}`} style={{ border: "1px solid rgba(0,255,136,0.1)", padding: "1.1rem 1.4rem", background: "rgba(255,255,255,0.01)", display: "flex", alignItems: "center", gap: "1rem", transition: "all 0.2s" }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(0,255,136,0.3)"; e.currentTarget.style.background = "rgba(0,255,136,0.03)"; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(0,255,136,0.1)"; e.currentTarget.style.background = "rgba(255,255,255,0.01)"; }}>
               <span style={{ color: "#00ff88", fontSize: "1rem", flexShrink: 0 }}>{icon}</span>
@@ -400,7 +439,7 @@ function About() {
           <div style={{ border: "1px solid rgba(0,255,136,0.1)", padding: "1.2rem 1.5rem", background: "rgba(0,0,0,0.4)", fontFamily: "'Share Tech Mono', monospace", fontSize: "0.7rem", lineHeight: 1.85 }}>
             <div style={{ color: "rgba(255,255,255,0.2)", marginBottom: 4 }}>// madhur.config.js</div>
             <div><span style={{ color: "#a855f7" }}>const</span> <span style={{ color: "#00d4ff" }}>dev</span> = {"{"}</div>
-            <div style={{ paddingLeft: "1rem" }}><span style={{ color: "#00ff88" }}>passion</span>: <span style={{ color: "#ff6b35" }}>"fullstack"</span>,</div>
+            <div style={{ paddingLeft: "1rem" }}><span style={{ color: "#00ff88" }}>passion</span>: <span style={{ color: "#ff6b35" }}>"fullstack + ai"</span>,</div>
             <div style={{ paddingLeft: "1rem" }}><span style={{ color: "#00ff88" }}>coffee</span>: <span style={{ color: "#ff6b35" }}>Infinity</span>,</div>
             <div style={{ paddingLeft: "1rem" }}><span style={{ color: "#00ff88" }}>available</span>: <span style={{ color: "#00d4ff" }}>true</span>,</div>
             <div>{"}"}</div>
@@ -412,10 +451,10 @@ function About() {
 }
 
 // ─── EXPERIENCE ──────────────────────────────────────────────────────────────
-function ExpCard({ exp, defaultOpen }) {
+function ExpCard({ exp, defaultOpen, index }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div style={{ border: "1px solid rgba(0,255,136,0.12)", background: open ? "rgba(0,255,136,0.02)" : "rgba(255,255,255,0.01)", transition: "all 0.3s", position: "relative", overflow: "hidden" }}>
+    <div className={`reveal stagger-${index + 1}`} style={{ border: "1px solid rgba(0,255,136,0.12)", background: open ? "rgba(0,255,136,0.02)" : "rgba(255,255,255,0.01)", transition: "all 0.3s", position: "relative", overflow: "hidden" }}>
       {exp.type === "fulltime" && <div style={{ position: "absolute", top: 0, left: 0, width: 3, height: "100%", background: "linear-gradient(to bottom, #00ff88, rgba(0,255,136,0.15))" }} />}
       <div onClick={() => setOpen(!open)} style={{ padding: "1.4rem 1.8rem", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem" }}>
         <div style={{ flex: 1 }}>
@@ -447,16 +486,124 @@ function ExpCard({ exp, defaultOpen }) {
     </div>
   );
 }
+
 function Experience() {
   return (
     <section id="experience" style={{ padding: "clamp(4rem,10vw,8rem) clamp(1.5rem,8vw,7rem)", position: "relative" }}>
       <Divider />
-      <SL n={2} label="experience" />
-      <SectionTitle main="Work" ghost="History" />
+      <div className="reveal">
+        <SL n={2} label="experience" />
+        <SectionTitle main="Work" ghost="History" />
+      </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
-        {resume.experience.map((e, i) => <ExpCard key={e.id} exp={e} defaultOpen={i === 0} />)}
+        {resume.experience.map((e, i) => <ExpCard key={e.id} exp={e} defaultOpen={i === 0} index={i} />)}
       </div>
     </section>
+  );
+}
+
+// ─── SKILL TAG ───────────────────────────────────────────────────────────────
+function SkillTag({ label, color }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <span
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontFamily: "'Share Tech Mono', monospace",
+        fontSize: "0.74rem",
+        color: hovered ? "#06060a" : color,
+        border: `1px solid ${hovered ? color : color + "30"}`,
+        background: hovered ? color : `${color}08`,
+        padding: "6px 14px",
+        cursor: "default",
+        display: "inline-block",
+        transition: "all 0.22s cubic-bezier(0.22,1,0.36,1)",
+        transform: hovered ? "translateY(-3px) scale(1.06)" : "none",
+        boxShadow: hovered ? `0 8px 20px ${color}30` : "none",
+        letterSpacing: "0.04em",
+        fontWeight: hovered ? 600 : 400,
+      }}
+    >
+      {label}
+    </span>
+  );
+}
+
+// ─── SKILL CARD ──────────────────────────────────────────────────────────────
+function SkillCard({ cat, items, color, icon, index }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      className={`reveal-scale stagger-${index + 1}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        border: `1px solid ${hovered ? color + "50" : "rgba(255,255,255,0.06)"}`,
+        padding: "2rem",
+        background: hovered ? `${color}06` : "rgba(255,255,255,0.01)",
+        position: "relative",
+        overflow: "hidden",
+        transition: "all 0.35s cubic-bezier(0.22,1,0.36,1)",
+        transform: hovered ? "translateY(-6px)" : "none",
+        boxShadow: hovered ? `0 20px 40px ${color}12, inset 0 1px 0 ${color}20` : "none",
+        cursor: "default",
+      }}
+    >
+      {/* Animated corner accent */}
+      <div style={{
+        position: "absolute", top: 0, right: 0,
+        width: hovered ? 60 : 38, height: hovered ? 60 : 38,
+        borderLeft: `1px solid ${color}${hovered ? "70" : "35"}`,
+        borderBottom: `1px solid ${color}${hovered ? "70" : "35"}`,
+        transition: "all 0.35s cubic-bezier(0.22,1,0.36,1)",
+      }} />
+
+      {/* Glow blob on hover */}
+      <div style={{
+        position: "absolute", top: -40, left: -40,
+        width: 120, height: 120,
+        borderRadius: "50%",
+        background: `radial-gradient(circle, ${color}12 0%, transparent 70%)`,
+        opacity: hovered ? 1 : 0,
+        transition: "opacity 0.4s ease",
+        pointerEvents: "none",
+      }} />
+
+      {/* Icon + title */}
+      <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: "1.5rem", position: "relative" }}>
+        <div style={{
+          width: 40, height: 40,
+          border: `1px solid ${color}${hovered ? "60" : "25"}`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          background: hovered ? `${color}15` : `${color}07`,
+          transition: "all 0.3s ease",
+          flexShrink: 0,
+        }}>
+          <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.9rem", color }}>{icon}</span>
+        </div>
+        <div>
+          <span style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "0.95rem", color: "#fff", display: "block", letterSpacing: "-0.01em" }}>{cat}</span>
+          <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.58rem", color: `${color}80`, letterSpacing: "0.2em" }}>{items.length} TECHNOLOGIES</span>
+        </div>
+      </div>
+
+      {/* Divider line that grows on hover */}
+      <div style={{
+        height: 1,
+        background: `linear-gradient(to right, ${color}40, transparent)`,
+        marginBottom: "1.3rem",
+        width: hovered ? "100%" : "40%",
+        transition: "width 0.4s cubic-bezier(0.22,1,0.36,1)",
+      }} />
+
+      {/* Tags */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+        {items.map((s, i) => (
+          <SkillTag key={s} label={s} color={color} />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -465,26 +612,13 @@ function Skills() {
   return (
     <section id="skills" style={{ padding: "clamp(4rem,10vw,8rem) clamp(1.5rem,8vw,7rem)", position: "relative" }}>
       <Divider />
-      <SL n={3} label="skills" />
-      <SectionTitle main="Tech" ghost="Stack" />
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1px", background: "rgba(0,255,136,0.04)" }}>
-        {Object.entries(resume.skills).map(([cat, { items, color, icon }]) => (
-          <div key={cat} style={{ border: "1px solid rgba(255,255,255,0.06)", padding: "1.7rem", background: "rgba(255,255,255,0.01)", position: "relative", overflow: "hidden" }}>
-            <div style={{ position: "absolute", top: 0, right: 0, width: 38, height: 38, borderLeft: `1px solid ${color}40`, borderBottom: `1px solid ${color}40` }} />
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: "1.3rem" }}>
-              <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "1rem", color }}>{icon}</span>
-              <span style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: "0.88rem", color: "#fff" }}>{cat}</span>
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.45rem" }}>
-              {items.map(s => (
-                <span key={s} style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.74rem", color, border: `1px solid ${color}28`, background: `${color}07`, padding: "5px 13px", transition: "all 0.2s", cursor: "default" }}
-                  onMouseEnter={e => { e.currentTarget.style.background = `${color}18`; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = `${color}07`; e.currentTarget.style.transform = "none"; }}>
-                  {s}
-                </span>
-              ))}
-            </div>
-          </div>
+      <div className="reveal">
+        <SL n={3} label="skills" />
+        <SectionTitle main="Tech" ghost="Stack" />
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "16px" }}>
+        {Object.entries(resume.skills).map(([cat, { items, color, icon }], ci) => (
+          <SkillCard key={cat} cat={cat} items={items} color={color} icon={icon} index={ci} />
         ))}
       </div>
     </section>
@@ -496,11 +630,13 @@ function Projects() {
   return (
     <section id="projects" style={{ padding: "clamp(4rem,10vw,8rem) clamp(1.5rem,8vw,7rem)", position: "relative" }}>
       <Divider />
-      <SL n={4} label="projects" />
-      <SectionTitle main="Featured" ghost="Projects" />
+      <div className="reveal">
+        <SL n={4} label="projects" />
+        <SectionTitle main="Featured" ghost="Projects" />
+      </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "1px", background: "rgba(0,255,136,0.04)" }}>
         {resume.projects.map((p, i) => (
-          <div key={p.id} style={{ border: "1px solid rgba(0,255,136,0.12)", background: "rgba(0,0,0,0.3)", padding: "2.2rem", position: "relative", overflow: "hidden", transition: "all 0.3s" }}
+          <div key={p.id} className="reveal-scale" style={{ border: "1px solid rgba(0,255,136,0.12)", background: "rgba(0,0,0,0.3)", padding: "2.2rem", position: "relative", overflow: "hidden", transition: "all 0.3s" }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(0,255,136,0.35)"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.background = "rgba(0,255,136,0.03)"; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(0,255,136,0.12)"; e.currentTarget.style.transform = "none"; e.currentTarget.style.background = "rgba(0,0,0,0.3)"; }}>
             <div style={{ position: "absolute", top: "1.2rem", right: "1.2rem", fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "5rem", color: "rgba(0,255,136,0.04)", lineHeight: 1, userSelect: "none" }}>{String(i + 1).padStart(2, "0")}</div>
@@ -536,11 +672,13 @@ function Education() {
   return (
     <section id="education" style={{ padding: "clamp(4rem,10vw,8rem) clamp(1.5rem,8vw,7rem)", position: "relative" }}>
       <Divider />
-      <SL n={5} label="education" />
-      <SectionTitle main="Academic" ghost="Background" />
+      <div className="reveal">
+        <SL n={5} label="education" />
+        <SectionTitle main="Academic" ghost="Background" />
+      </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
         {resume.education.map((ed, i) => (
-          <div key={i} style={{ border: "1px solid rgba(0,255,136,0.1)", padding: "1.6rem 1.8rem", background: "rgba(255,255,255,0.01)", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem", flexWrap: "wrap", transition: "all 0.25s" }}
+          <div key={i} className={`reveal stagger-${i + 1}`} style={{ border: "1px solid rgba(0,255,136,0.1)", padding: "1.6rem 1.8rem", background: "rgba(255,255,255,0.01)", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem", flexWrap: "wrap", transition: "all 0.25s" }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(0,255,136,0.28)"; e.currentTarget.style.paddingLeft = "2.3rem"; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(0,255,136,0.1)"; e.currentTarget.style.paddingLeft = "1.8rem"; }}>
             <div>
@@ -555,37 +693,123 @@ function Education() {
   );
 }
 
+// ─── CONTACT CARD ─────────────────────────────────────────────────────────────
+function ContactCard({ label, value, href, icon, index, accent }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel="noreferrer"
+      className={`reveal stagger-${index + 1}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: "flex", flexDirection: "column", gap: "0.6rem",
+        padding: "1.8rem",
+        background: hovered ? `${accent}08` : "rgba(6,6,10,0.95)",
+        textDecoration: "none",
+        border: `1px solid ${hovered ? accent + "50" : "rgba(255,255,255,0.06)"}`,
+        transition: "all 0.35s cubic-bezier(0.22,1,0.36,1)",
+        transform: hovered ? "translateY(-6px)" : "none",
+        boxShadow: hovered ? `0 20px 40px ${accent}15` : "none",
+        position: "relative", overflow: "hidden",
+        cursor: "pointer",
+      }}
+    >
+      {/* Top accent line that slides in */}
+      <div style={{
+        position: "absolute", top: 0, left: 0,
+        height: 2,
+        width: hovered ? "100%" : "0%",
+        background: `linear-gradient(to right, ${accent}, ${accent}40)`,
+        transition: "width 0.4s cubic-bezier(0.22,1,0.36,1)",
+      }} />
+
+      {/* Glow bottom-right */}
+      <div style={{
+        position: "absolute", bottom: -30, right: -30,
+        width: 100, height: 100,
+        borderRadius: "50%",
+        background: `radial-gradient(circle, ${accent}15 0%, transparent 70%)`,
+        opacity: hovered ? 1 : 0,
+        transition: "opacity 0.4s",
+        pointerEvents: "none",
+      }} />
+
+      {/* Icon circle */}
+      <div style={{
+        width: 38, height: 38,
+        border: `1px solid ${hovered ? accent + "60" : accent + "25"}`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        background: hovered ? `${accent}18` : `${accent}08`,
+        transition: "all 0.3s ease",
+        marginBottom: "0.3rem",
+        fontSize: "1rem",
+      }}>
+        {icon}
+      </div>
+
+      <div style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.58rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.25em", textTransform: "uppercase" }}>{label}</div>
+      <div style={{
+        fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem",
+        color: hovered ? accent : "rgba(255,255,255,0.7)",
+        wordBreak: "break-all", transition: "color 0.3s",
+        fontWeight: hovered ? 500 : 400,
+      }}>{value}</div>
+
+      {/* Arrow indicator */}
+      <div style={{
+        position: "absolute", top: "1.5rem", right: "1.5rem",
+        fontFamily: "'Share Tech Mono', monospace", fontSize: "0.75rem",
+        color: accent,
+        opacity: hovered ? 1 : 0,
+        transform: hovered ? "translate(0,0)" : "translate(-4px, 4px)",
+        transition: "all 0.3s ease",
+      }}>↗</div>
+    </a>
+  );
+}
+
 // ─── CONTACT ──────────────────────────────────────────────────────────────────
 function Contact() {
   const links = [
-    ["Email", resume.contact.email, `mailto:${resume.contact.email}`],
-    ["LinkedIn", "linkedin.com/in/madhurpathak", resume.contact.linkedin],
-    ["GitHub", "github.com/madhurpathak", resume.contact.github],
-    ["Phone", resume.contact.phone, `tel:${resume.contact.phone}`],
+    { label: "Email", value: resume.contact.email, href: `mailto:${resume.contact.email}`, icon: "✉", accent: "#00ff88" },
+    { label: "LinkedIn", value: "linkedin.com/in/madhurpathak", href: resume.contact.linkedin, icon: "in", accent: "#00d4ff" },
+    { label: "GitHub", value: "github.com/madhurpathak", href: resume.contact.github, icon: "</>", accent: "#a855f7" },
+    { label: "Phone", value: resume.contact.phone, href: `tel:${resume.contact.phone}`, icon: "✆", accent: "#ff6b35" },
   ];
+
   return (
     <section id="contact" style={{ padding: "clamp(4rem,10vw,8rem) clamp(1.5rem,8vw,7rem)", position: "relative", textAlign: "center" }}>
       <Divider />
-      <div style={{ position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)", width: 600, height: 200, background: "radial-gradient(ellipse, rgba(0,255,136,0.05) 0%, transparent 70%)", filter: "blur(30px)", pointerEvents: "none" }} />
-      <SL n={6} label="contact" />
-      <h2 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "clamp(2.5rem,6vw,5rem)", letterSpacing: "-0.03em", color: "#fff", marginBottom: "1rem" }}>
-        Let's <span style={{ color: "#00ff88" }}>Connect</span>
-      </h2>
-      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.97rem", color: "rgba(255,255,255,0.42)", marginBottom: "3.5rem", maxWidth: 460, margin: "0 auto 3.5rem", lineHeight: 1.85 }}>
-        Open to full-time roles, freelance work, or just a great conversation about code.
-      </p>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1px", background: "rgba(0,255,136,0.06)", maxWidth: 800, margin: "0 auto 3rem" }}>
-        {links.map(([label, value, href]) => (
-          <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
-            style={{ display: "block", padding: "1.4rem", background: "rgba(6,6,10,0.95)", textDecoration: "none", transition: "all 0.2s", borderTop: "2px solid transparent" }}
-            onMouseEnter={e => { e.currentTarget.style.background = "rgba(0,255,136,0.04)"; e.currentTarget.style.borderTopColor = "#00ff88"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "rgba(6,6,10,0.95)"; e.currentTarget.style.borderTopColor = "transparent"; }}>
-            <div style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.58rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{label}</div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#00ff88", wordBreak: "break-all" }}>{value}</div>
-          </a>
-        ))}
+
+      {/* Big ambient glow */}
+      <div style={{ position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)", width: 700, height: 300, background: "radial-gradient(ellipse, rgba(0,255,136,0.06) 0%, transparent 70%)", filter: "blur(40px)", pointerEvents: "none" }} />
+
+      <div className="reveal">
+        <SL n={6} label="contact" />
+        <h2 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "clamp(2.5rem,6vw,5rem)", letterSpacing: "-0.03em", color: "#fff", marginBottom: "0.6rem", lineHeight: 1 }}>
+          Let's <span style={{ color: "#00ff88" }}>Connect</span>
+        </h2>
+        <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.7rem", color: "rgba(0,255,136,0.5)", letterSpacing: "0.2em", marginBottom: "1.2rem" }}>// OPEN TO OPPORTUNITIES</p>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.97rem", color: "rgba(255,255,255,0.38)", maxWidth: 480, margin: "0 auto 4rem", lineHeight: 1.9 }}>
+          Open to full-time roles, freelance work, or just a great conversation about code.
+        </p>
       </div>
-      <div style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.12)", letterSpacing: "0.2em" }}>
+
+      {/* Cards grid */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px", maxWidth: 860, margin: "0 auto 4rem" }}>
+        {links.map((l, i) => <ContactCard key={l.label} {...l} index={i} />)}
+      </div>
+
+      {/* Bottom divider + footer */}
+      <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", justifyContent: "center", marginBottom: "1.5rem" }}>
+        <div style={{ flex: 1, maxWidth: 120, height: 1, background: "linear-gradient(to right, transparent, rgba(0,255,136,0.2))" }} />
+        <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.6rem", color: "#00ff88", opacity: 0.4, letterSpacing: "0.2em" }}>MP</span>
+        <div style={{ flex: 1, maxWidth: 120, height: 1, background: "linear-gradient(to left, transparent, rgba(0,255,136,0.2))" }} />
+      </div>
+      <div style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.58rem", color: "rgba(255,255,255,0.1)", letterSpacing: "0.2em" }}>
         MADHUR PATHAK © {new Date().getFullYear()} — BUILT WITH REACT + PASSION
       </div>
     </section>
@@ -612,6 +836,7 @@ function useActiveSection() {
 // ─── APP ──────────────────────────────────────────────────────────────────────
 export default function App() {
   const active = useActiveSection();
+  useScrollReveal();
   return (
     <div style={{ minHeight: "100vh", background: "#06060a", color: "#fff", position: "relative" }}>
       <GlobalStyles />
