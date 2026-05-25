@@ -232,14 +232,14 @@ export const contactCards = [
     label: 'LinkedIn',
     value: 'linkedin.com/in/madhurpathak',
     href: 'https://www.linkedin.com/',
-    icon: 'Linkedin',
+    icon: '/linkedin.png',
     accent: 'purple',
   },
   {
     label: 'GitHub',
     value: 'github.com/madhurpathak',
     href: 'https://github.com/',
-    icon: 'Github',
+    icon: '/github.png',
     accent: 'orange',
   },
 ];

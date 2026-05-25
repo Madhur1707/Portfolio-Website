@@ -45,8 +45,8 @@ export default function Navbar() {
           </span>
           <span className="tracking-tight">
             {personal.firstName}
-            <span className="text-neon-green">.</span>
-            {personal.lastName.slice(0, 3).toLowerCase()}
+            <span className="text-neon-green">   </span>
+            {personal.lastName}
           </span>
         </button>
  
