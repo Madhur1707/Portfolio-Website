@@ -2,35 +2,42 @@
  * Single source of truth for portfolio content.
  * Keep all text/content here — components consume this file via props.
  */
- 
 export const personal = {
   name: 'Madhur Pathak',
   firstName: 'Madhur',
   lastName: 'Pathak',
+
   role: 'Full-Stack Software Developer',
-  tagline: 'React / Next.js / Java / AWS',
-  location: 'Bangalore, IN',
+
+  tagline: 'React • Next.js • Java • AWS',
+
+  location: 'Bangalore, India',
+
   email: 'madhurpathak000@gmail.com',
-  phone: '+91 89606 29039',
-  status: 'Available for new opportunities',
+
+  phone: '+918960629039',
+
+  status: 'Available for Opportunities',
+
   summary:
-    'Full-Stack Developer with hands-on production experience in React.js, Next.js, Java, and AWS — including serverless architecture with Lambda, API Gateway, and DynamoDB (GSI). I build and scale real-world healthcare and energy monitoring platforms, delivering end-to-end features from responsive UI and real-time dashboards to cloud infrastructure — with measurable impact.',
+    'I am a Full-Stack Developer who enjoys building products from idea to production. My experience includes developing healthcare and energy management platforms using React, Next.js, Java, Spring Boot, and AWS. I enjoy creating clean user experiences, scalable backend systems, and solving real-world problems through software.',
+
   typewriterPhrases: [
     'Full-Stack Developer',
-    'React & Next.js Engineer',
-    'Java + AWS Serverless',
-    'Real-Time Dashboards',
-    'Healthcare & Energy Platforms',
+    'Frontend Engineer',
+    'React & Next.js Developer',
+    'Java Backend Developer',
+    'AWS Cloud Enthusiast',
   ],
 };
- 
+
 export const socials = {
   github: 'https://github.com/',
   linkedin: 'https://www.linkedin.com/',
   email: 'mailto:madhurpathak000@gmail.com',
   portfolio: '#hero',
 };
- 
+
 export const navLinks = [
   { id: 'hero', label: 'Home' },
   { id: 'about', label: 'About' },
@@ -40,47 +47,28 @@ export const navLinks = [
   { id: 'education', label: 'Education' },
   { id: 'contact', label: 'Contact' },
 ];
- 
-export const aboutCards = [
-  {
-    label: 'role',
-    value: 'Full-Stack Developer',
-    accent: 'green',
-  },
-  {
-    label: 'stack',
-    value: 'React · Next.js · Java · AWS',
-    accent: 'cyan',
-  },
-  {
-    label: 'focus',
-    value: 'Healthcare & Energy Platforms',
-    accent: 'purple',
-  },
-  {
-    label: 'location',
-    value: 'Bangalore, IN',
-    accent: 'orange',
-  },
-];
- 
+
 export const devConfig = {
   filename: 'developer.config.js',
   language: 'javascript',
+
   lines: [
     "const developer = {",
     "  name: 'Madhur Pathak',",
-    "  role: 'Full-Stack Software Developer',",
+    "  role: 'Full-Stack Developer',",
     "  stack: ['React', 'Next.js', 'Java', 'AWS'],",
-    "  focus: ['Serverless', 'Real-time UI', 'RBAC'],",
-    "  currentlyShipping: 'MedicsAI @ AlgoFlowAI',",
-    "  openTo: ['Senior Frontend', 'Full-Stack', 'Remote'],",
+    "  building: 'Scalable Web Applications',",
+    "  experience: ['Healthcare', 'Energy Monitoring'],",
+    "  interests: ['AI', 'Cloud', 'System Design'],",
+    "  favouriteThing: 'Turning Ideas Into Products',",
+    "  status: 'Available For Opportunities',",
     "};",
     "",
     "export default developer;",
   ],
 };
- 
+
+
 export const experience = [
   {
     company: 'AlgoFlowAI',
@@ -116,7 +104,7 @@ export const experience = [
     tech: ['Next.js', 'React', 'Tailwind', 'Context API', 'REST APIs'],
   },
 ];
- 
+
 export const skillGroups = [
   {
     title: 'Languages',
@@ -143,7 +131,7 @@ export const skillGroups = [
     items: ['Git', 'GitHub', 'Postman', 'VS Code', 'Figma'],
   },
 ];
- 
+
 export const projects = [
   {
     title: 'HiredHub — AI-Powered Job Portal',
@@ -197,7 +185,7 @@ export const projects = [
     },
   },
 ];
- 
+
 export const education = [
   {
     school: 'Maharana Pratap College of Technology, Gwalior',
@@ -212,7 +200,7 @@ export const education = [
     accent: 'cyan',
   },
 ];
- 
+
 export const contactCards = [
   {
     label: 'Email',
@@ -243,20 +231,59 @@ export const contactCards = [
     accent: 'orange',
   },
 ];
- 
+
 export const heroStats = [
-  { label: 'Years', value: '1+', accent: 'green' },
-  { label: 'Lambdas Shipped', value: '15+', accent: 'cyan' },
-  { label: 'Components', value: '30+', accent: 'purple' },
-  { label: 'Latency Cut', value: '50%', accent: 'orange' },
+  {
+    label: 'Experience',
+    value: '1+ Year',
+    accent: 'green',
+  },
+  {
+    label: 'Projects',
+    value: '10+',
+    accent: 'cyan',
+  },
+  {
+    label: 'Focus',
+    value: 'AI & SaaS',
+    accent: 'purple',
+  },
+  {
+    label: 'Speciality',
+    value: 'Full-Stack',
+    accent: 'orange',
+  },
 ];
- 
+
 export const floatingBadges = [
   { label: 'React', color: 'cyan' },
   { label: 'Next.js', color: 'green' },
   { label: 'AWS', color: 'orange' },
   { label: 'Java', color: 'purple' },
   { label: 'TypeScript', color: 'cyan' },
-  { label: 'Tailwind', color: 'green' },
+  { label: 'Node.js', color: 'green' },
 ];
- 
+
+
+export const aboutCards = [
+  {
+    label: 'Current Role',
+    value: 'Full-Stack Developer',
+    accent: 'green',
+  },
+  {
+    label: 'Industry',
+    value: 'Healthcare',
+    accent: 'cyan',
+  },
+  {
+    label: 'Exploring',
+    value: 'AI Engineering',
+    accent: 'purple',
+  },
+  {
+    label: 'Location',
+    value: 'Bangalore, India',
+    accent: 'orange',
+  },
+];

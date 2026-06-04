@@ -4,20 +4,20 @@ import MatrixBackground from './MatrixBackground';
 import Typewriter from './Typewriter';
 import CodePanel from './CodePanel';
 import { personal, heroStats, floatingBadges } from '../../data/portfolioData';
- 
+
 const accentMap = {
   green: 'border-neon-green/40 text-neon-green',
   cyan: 'border-neon-cyan/40 text-neon-cyan',
   purple: 'border-neon-purple/40 text-neon-purple',
   orange: 'border-neon-orange/40 text-neon-orange',
 };
- 
+
 export default function Hero() {
   const scrollTo = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
- 
+
   return (
     <section
       id="hero"
@@ -27,7 +27,7 @@ export default function Hero() {
       <MatrixBackground density={18} opacity={0.45} />
       <div className="absolute inset-0 grid-bg pointer-events-none" />
       <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
- 
+
       <div className="relative max-w-7xl mx-auto pt-32 md:pt-36 pb-20 px-5 sm:px-8 md:px-12 lg:px-20 grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         {/* Left content */}
         <div className="lg:col-span-7">
@@ -45,7 +45,7 @@ export default function Hero() {
               {personal.status}
             </span>
           </motion.div>
- 
+
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -54,7 +54,7 @@ export default function Hero() {
           >
             {`> hello_world.init()`}
           </motion.p>
- 
+
           <motion.h1
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export default function Hero() {
             <span className="text-gradient-neon">{personal.lastName}</span>
             <span className="text-neon-green">.</span>
           </motion.h1>
- 
+
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,7 +77,7 @@ export default function Hero() {
             <Typewriter phrases={personal.typewriterPhrases} className="mx-1" />
             <span className="text-neon-cyan">{'/>'}</span>
           </motion.div>
- 
+
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ export default function Hero() {
           >
             {personal.summary}
           </motion.p>
- 
+
           {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -101,7 +101,7 @@ export default function Hero() {
               <Download size={14} /> Get in touch
             </button>
           </motion.div>
- 
+
           {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -115,14 +115,13 @@ export default function Hero() {
                 className={`glass rounded-lg px-4 py-3 glow-on-hover`}
               >
                 <div
-                  className={`font-display text-2xl font-bold ${
-                    {
+                  className={`font-display text-xl font-bold ${{
                       green: 'text-neon-green',
                       cyan: 'text-neon-cyan',
                       purple: 'text-neon-purple',
                       orange: 'text-neon-orange',
                     }[s.accent]
-                  }`}
+                    }`}
                 >
                   {s.value}
                 </div>
@@ -133,11 +132,11 @@ export default function Hero() {
             ))}
           </motion.div>
         </div>
- 
+
         {/* Right side: Code panel + floating badges */}
         <div className="lg:col-span-5 relative">
           <CodePanel />
- 
+
           {/* Floating badges */}
           <div className="hidden md:block">
             {floatingBadges.map((b, i) => {
@@ -165,7 +164,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
- 
+
       {/* Scroll cue */}
       <motion.button
         onClick={() => scrollTo('about')}
@@ -183,4 +182,3 @@ export default function Hero() {
     </section>
   );
 }
- 
