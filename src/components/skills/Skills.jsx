@@ -14,7 +14,7 @@ export default function Skills() {
                     </SectionTitle>
                 </div>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {skillGroups.map((g, i) => (
                         <SkillCard key={g.title} group={g} index={i} />
                     ))}

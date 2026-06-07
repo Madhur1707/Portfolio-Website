@@ -24,10 +24,10 @@ export const personal = {
 
   typewriterPhrases: [
     'Full-Stack Developer',
-    'Frontend Engineer',
-    'React & Next.js Developer',
-    'Java Backend Developer',
-    'AWS Cloud Enthusiast',
+    'Frontend Enthusiast',
+    'React & Next.js',
+    'Java & Spring Boot',
+    'AWS Cloud',
   ],
 };
 
@@ -68,25 +68,24 @@ export const devConfig = {
   ],
 };
 
-
 export const experience = [
   {
     company: 'AlgoFlowAI',
-    role: 'Full Stack Software Developer (MedicsAI)',
+    role: 'Full-Stack Software Developer — CureZ Healthcare Platform',
     period: 'Oct 2025 — Present',
     location: 'Bangalore, IN',
     accent: 'green',
     summary:
-      'Building a production-grade healthcare platform end-to-end — modern React/Next.js UI, serverless Java backend on AWS, and real-time analytics.',
+      'Building a production-grade healthcare platform from the ground up — Spring Boot microservices on AWS, real-time admin dashboards, booking engines, and payment pipelines serving 1000+ concurrent users.',
     bullets: [
-      'Developed and scaled a production-grade healthcare platform using React.js, Next.js (App Router) and Tailwind CSS — improving critical UI workflows by 40% through optimized component architecture and state management.',
-      'Designed a reusable frontend architecture with custom hooks + Context API, reducing prop drilling and increasing code reuse by 50% across patient, hospital, and appointment modules.',
-      'Built real-time analytics dashboards and complete CRUD flows using Recharts and modern UI patterns — enabling faster clinical and operational insights.',
-      'Led development of a serverless backend in Java — architecting 15+ AWS Lambda functions and scalable REST APIs using API Gateway + DynamoDB (GSI), reducing data retrieval latency by up to 50%.',
-      'Implemented secure authentication and role-based access control (RBAC) using JWT + Twilio OTP with structured error handling and fallback mechanisms, reducing auth-related failures by 35%.',
-      'Deployed and optimized cloud infrastructure on AWS — achieving <1s API response time under concurrent load while ensuring medical data compliance.',
+      'Designed a role-based Spring Boot microservices architecture deployed on AWS Lambda — each domain service independently scaled behind API Gateway, supporting 1000+ concurrent users across Admin, Provider, and Customer roles with 99.9% uptime.',
+      'Built a real-time admin analytics dashboard with Next.js and Recharts — tracking bookings, revenue, providers, and payments across 6 domains with memoized 7/30/90-day trends and sub-300ms load times.',
+      'Engineered a conflict-free booking and payment system — real-time slot locking, full Razorpay integration with idempotent webhook processing, dynamic commission calculations, and automated refunds achieving 98%+ booking success.',
+      'Set up a DynamoDB-to-RDS MySQL sync pipeline using DynamoDB Streams — offloading heavy analytics queries to RDS, cutting read costs by 35% and improving query latency by 40%.',
+      'Built a performant search and pagination layer with request debouncing, AbortController cancellation, and multi-select filtering across 12+ columns — reducing server load by 42% across 20,000+ records.',
+      'Architected a reusable component system with custom hooks and Context API across patient, hospital, and appointment modules — cutting prop-drilling and improving code reuse by 50%.',
     ],
-    tech: ['React', 'Next.js', 'Tailwind', 'Java', 'AWS Lambda', 'API Gateway', 'DynamoDB', 'JWT', 'Twilio'],
+    tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Java', 'Spring Boot', 'AWS Lambda', 'API Gateway', 'DynamoDB', 'RDS MySQL', 'Recharts', 'Razorpay', 'JWT', 'Maven'],
   },
   {
     company: 'AlgoFlowAI — Enream Project',
@@ -95,15 +94,17 @@ export const experience = [
     location: 'Remote',
     accent: 'cyan',
     summary:
-      'Owned core energy-monitoring features end-to-end — building real-time dashboards for plants, inverters and sensor data.',
+      'Owned the entire frontend of an enterprise energy monitoring platform — real-time dashboards, AI-powered analysis, and a data ingestion pipeline handling 100K+ records, deployed on AWS.',
     bullets: [
-      'Took end-to-end ownership of core energy monitoring features — delivering complete solutions from Next.js/React UI to real-time API integration for plants, inverters, and sensor data.',
-      'Engineered performant, asynchronous data flows for real-time dashboards by optimizing API calls, state management, and client-side caching — improving system responsiveness and operational visibility by 30%.',
-      'Architected a scalable, modular frontend using modern React patterns, custom hooks, Context API, and utility-first styling with Tailwind CSS — enabling rapid feature delivery across 30+ components.',
+      'Architected a multi-tenant energy monitoring UI in Next.js/React with hierarchical asset management (Plant → System → Asset), role-based dashboards, and real-time data across 9+ modules for 1000+ physical assets.',
+      'Built a dynamic analytics dashboard with Recharts and D3-geo — 8+ parameter filtering, dynamic severity classification, and sub-200ms query response across 1000+ assets.',
+      'Engineered an AI-powered image analysis module with 30–50% compression, severity detection, and structured field extraction — plus a data ingestion pipeline handling 100K+ records via XLSX/CSV with S3 presigned uploads and batch validation.',
+      'Deployed the full application on AWS S3 + CloudFront across multiple regions — achieving sub-2-minute CI/CD cycles and consistent global performance.',
     ],
-    tech: ['Next.js', 'React', 'Tailwind', 'Context API', 'REST APIs'],
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Recharts', 'D3.js', 'Context API', 'Custom Hooks', 'AWS S3', 'CloudFront', 'REST APIs'],
   },
 ];
+
 
 export const skillGroups = [
   {
@@ -116,21 +117,35 @@ export const skillGroups = [
     title: 'Frontend',
     accent: 'cyan',
     icon: 'Layout',
-    items: ['React.js', 'Next.js', 'Redux', 'Tailwind CSS', 'Material UI', 'Radix UI', 'ShadCN'],
+    items: ['React.js', 'Next.js', 'Redux', 'Tailwind CSS', 'ShadCN UI', 'Material UI', 'Recharts', 'D3.js', 'Leaflet'],
   },
   {
-    title: 'Backend & Cloud',
+    title: 'Backend',
     accent: 'purple',
     icon: 'Server',
-    items: ['Java', 'Node.js', 'Spring Boot', 'REST APIs', 'AWS', 'JWT Auth'],
+    items: ['Spring Boot', 'Microservices', 'Node.js', 'REST APIs', 'WebSockets', 'JWT', 'Maven'],
+  },
+  {
+    title: 'Database & Cloud',
+    accent: 'blue',
+    icon: 'Cloud',
+    items: ['MySQL', 'DynamoDB', 'MongoDB', 'PostgreSQL', 'AWS Lambda', 'API Gateway', 'S3', 'CloudFront', 'DynamoDB Streams'],
+  },
+  {
+    title: 'Integrations',
+    accent: 'orange',
+    icon: 'Plug',
+    items: ['Stripe', 'Razorpay', 'Firebase FCM', 'WhatsApp API', 'Twilio', 'Supabase', 'OpenAI API'],
   },
   {
     title: 'Tools',
-    accent: 'orange',
+    accent: 'yellow',
     icon: 'Wrench',
-    items: ['Git', 'GitHub', 'Postman', 'VS Code', 'Figma'],
+    items: ['Git', 'GitHub', 'Postman', 'VS Code', 'Figma', 'CI/CD'],
   },
 ];
+
+
 
 export const projects = [
   {
@@ -154,7 +169,7 @@ export const projects = [
     title: 'MedicsAI — Healthcare Platform',
     accent: 'cyan',
     description:
-      'Production healthcare platform with patient, hospital, and appointment modules. Real-time analytics, serverless Java backend on AWS, and secure RBAC auth.',
+      'Production healthcare platform with patient, hospital, and appoinzzzzzzzztment modules. Real-time analytics, serverless Java backend on AWS, and secure RBAC auth.',
     highlights: [
       'Next.js App Router + reusable hook-based architecture',
       '15+ AWS Lambda functions with API Gateway + DynamoDB (GSI)',

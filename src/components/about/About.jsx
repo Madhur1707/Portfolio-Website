@@ -159,11 +159,12 @@ export default function About() {
             <p className="text-white/75 text-base sm:text-lg leading-relaxed">
               I&apos;m{' '}
               <span className="text-white font-medium">{personal.name}</span>{' '}
-              — a full-stack developer focused on{' '}
+              — a Full-Stack Developer focused on{' '}
               <span className="text-neon-green">React</span>,{' '}
               <span className="text-neon-cyan">Next.js</span>,{' '}
-              <span className="text-neon-purple">Java</span>, and{' '}
-              <span className="text-neon-orange">AWS serverless</span>.
+              <span className="text-neon-purple">Java</span>,{' '}
+              <span className="text-neon-purple">Spring Boot</span>, and{' '}
+              <span className="text-neon-orange">AWS Cloud</span>.
               I&apos;ve shipped production healthcare and energy platforms —
               owning the slice from real-time UI all the way down to Lambdas,
               API Gateway and DynamoDB.

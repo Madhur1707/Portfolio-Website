@@ -18,6 +18,8 @@ export default {
           cyan: '#00d4ff',
           purple: '#a855f7',
           orange: '#ff6b35',
+          blue: '#3b82f6',
+          yellow: '#facc15',
         },
         line: 'rgba(255,255,255,0.08)',
       },
@@ -31,6 +33,8 @@ export default {
         'neon-cyan': '0 0 0 1px rgba(0,212,255,0.35), 0 0 24px -4px rgba(0,212,255,0.45)',
         'neon-purple': '0 0 0 1px rgba(168,85,247,0.35), 0 0 24px -4px rgba(168,85,247,0.45)',
         'neon-orange': '0 0 0 1px rgba(255,107,53,0.35), 0 0 24px -4px rgba(255,107,53,0.45)',
+        'neon-blue': '0 0 0 1px rgba(59,130,246,0.35), 0 0 24px -4px rgba(59,130,246,0.45)',
+        'neon-yellow': '0 0 0 1px rgba(250,204,21,0.35), 0 0 24px -4px rgba(250,204,21,0.45)',
         glass: 'inset 0 1px 0 0 rgba(255,255,255,0.06), 0 10px 30px -10px rgba(0,0,0,0.7)',
       },
       backgroundImage: {

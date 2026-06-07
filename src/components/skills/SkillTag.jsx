@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 
 const accent = {
-    green: 'hover:text-neon-green hover:border-neon-green/40 hover:shadow-neon-green',
-    cyan: 'hover:text-neon-cyan hover:border-neon-cyan/40 hover:shadow-neon-cyan',
-    purple: 'hover:text-neon-purple hover:border-neon-purple/40 hover:shadow-neon-purple',
-    orange: 'hover:text-neon-orange hover:border-neon-orange/40 hover:shadow-neon-orange',
+    green: { text: 'text-neon-green', border: 'border-neon-green/30', bg: 'bg-neon-green/10', shadow: 'hover:shadow-neon-green' },
+    cyan: { text: 'text-neon-cyan', border: 'border-neon-cyan/30', bg: 'bg-neon-cyan/10', shadow: 'hover:shadow-neon-cyan' },
+    purple: { text: 'text-neon-purple', border: 'border-neon-purple/30', bg: 'bg-neon-purple/10', shadow: 'hover:shadow-neon-purple' },
+    orange: { text: 'text-neon-orange', border: 'border-neon-orange/30', bg: 'bg-neon-orange/10', shadow: 'hover:shadow-neon-orange' },
+    blue: { text: 'text-neon-blue', border: 'border-neon-blue/30', bg: 'bg-neon-blue/10', shadow: 'hover:shadow-neon-blue' },
+    yellow: { text: 'text-neon-yellow', border: 'border-neon-yellow/30', bg: 'bg-neon-yellow/10', shadow: 'hover:shadow-neon-yellow' },
 };
-
 export default function SkillTag({ label, accent: a = 'green', delay = 0 }) {
     return (
         <motion.span

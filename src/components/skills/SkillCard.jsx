@@ -1,14 +1,17 @@
 import { motion } from 'framer-motion';
-import { Code2, Layout, Server, Wrench } from 'lucide-react';
+import { Code2, Layout, Server, Wrench, Cloud, Plug } from 'lucide-react';
 import SkillTag from './SkillTag';
 
-const ICONS = { Code2, Layout, Server, Wrench };
+
+const ICONS = { Code2, Layout, Server, Wrench, Cloud, Plug };
 
 const accent = {
     green: { text: 'text-neon-green', border: 'border-neon-green/30', bg: 'bg-neon-green/10', shadow: 'hover:shadow-neon-green' },
     cyan: { text: 'text-neon-cyan', border: 'border-neon-cyan/30', bg: 'bg-neon-cyan/10', shadow: 'hover:shadow-neon-cyan' },
     purple: { text: 'text-neon-purple', border: 'border-neon-purple/30', bg: 'bg-neon-purple/10', shadow: 'hover:shadow-neon-purple' },
     orange: { text: 'text-neon-orange', border: 'border-neon-orange/30', bg: 'bg-neon-orange/10', shadow: 'hover:shadow-neon-orange' },
+    blue: { text: 'text-neon-blue', border: 'border-neon-blue/30', bg: 'bg-neon-blue/10', shadow: 'hover:shadow-neon-blue' },
+    yellow: { text: 'text-neon-yellow', border: 'border-neon-yellow/30', bg: 'bg-neon-yellow/10', shadow: 'hover:shadow-neon-yellow' },
 };
 
 export default function SkillCard({ group, index }) {
