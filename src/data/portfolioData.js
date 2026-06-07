@@ -33,7 +33,7 @@ export const personal = {
 
 export const socials = {
   github: 'https://github.com/Madhur1707',
-  linkedin: 'https://www.linkedin.com/',
+  linkedin: 'https://www.linkedin.com/in/madhurpathak/',
   email: 'mailto:madhurpathak000@gmail.com',
   portfolio: '#hero',
 };
