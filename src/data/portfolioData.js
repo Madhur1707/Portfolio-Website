@@ -32,7 +32,7 @@ export const personal = {
 };
 
 export const socials = {
-  github: 'https://github.com/',
+  github: 'https://github.com/Madhur1707',
   linkedin: 'https://www.linkedin.com/',
   email: 'mailto:madhurpathak000@gmail.com',
   portfolio: '#hero',
@@ -149,56 +149,161 @@ export const skillGroups = [
 
 export const projects = [
   {
-    title: 'HiredHub — AI-Powered Job Portal',
-    accent: 'green',
-    description:
-      'A comprehensive AI-powered job portal with intelligent candidate shortlisting. Integrates Gemini AI to analyze resumes against job descriptions, reducing screening time by 60%.',
-    highlights: [
-      'AI-driven resume vs. JD matching using Gemini API',
-      'Job listings with advanced search, filtering, and pagination',
-      'File uploads (PDF/DOC), rich-text job descriptions',
-      'Role-based access with protected routes',
-    ],
-    tech: ['React', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'Gemini AI'],
-    links: {
-      demo: 'https://example.com',
-      github: 'https://github.com/',
-    },
-  },
+  title: 'CureZ Healthcare Platform',
+  image: './curez.png',
+  accent: 'green',
+
+  description:
+    'A scalable healthcare marketplace connecting patients, providers, and administrators through a unified platform. Built to handle appointments, payments, provider onboarding, analytics, and healthcare operations with a seamless real-time experience.',
+
+  highlights: [
+    'Designed a complete healthcare ecosystem for patients, providers, and administrators',
+    'Built a real-time appointment and payment workflow with secure booking management',
+    'Developed advanced analytics dashboards for revenue tracking, provider performance, and business insights',
+    'Implemented provider onboarding, KYC verification, and role-based access control for secure operations'
+  ],
+
+  tech: [
+    'Java',
+    'Spring Boot',
+    'AWS Lambda',
+    'Next.js',
+    'React',
+    'DynamoDB',
+    'MySQL',
+    'WebSocket',
+    'JWT'
+  ],
+
+  links: {
+    demo: 'https://admin.curezindia.com/'
+  }
+},
   {
-    title: 'MedicsAI — Healthcare Platform',
-    accent: 'cyan',
-    description:
-      'Production healthcare platform with patient, hospital, and appoinzzzzzzzztment modules. Real-time analytics, serverless Java backend on AWS, and secure RBAC auth.',
-    highlights: [
-      'Next.js App Router + reusable hook-based architecture',
-      '15+ AWS Lambda functions with API Gateway + DynamoDB (GSI)',
-      'JWT + Twilio OTP authentication with RBAC',
-      'Real-time dashboards built with Recharts',
-    ],
-    tech: ['Next.js', 'React', 'Java', 'AWS Lambda', 'DynamoDB', 'Recharts'],
-    links: {
-      demo: 'https://example.com',
-      github: 'https://github.com/',
-    },
-  },
-  {
-    title: 'Enream — Energy Monitoring',
-    accent: 'purple',
-    description:
-      'Real-time energy monitoring dashboards for plants, inverters, and sensor networks. Built with a modular React architecture and optimized async data flows.',
-    highlights: [
-      'Real-time plant + inverter + sensor data visualization',
-      'Async data flows with client-side caching',
-      '30+ modular components powered by custom hooks',
-      '+30% improvement in system responsiveness',
-    ],
-    tech: ['Next.js', 'React', 'Tailwind', 'REST APIs', 'Context API'],
-    links: {
-      demo: 'https://example.com',
-      github: 'https://github.com/',
-    },
-  },
+  title: 'Bishops Waltham Pharmacy',
+  image: './bishops.png',
+  accent: 'cyan',
+
+  description:
+    'A production healthcare platform built for a UK pharmacy, enabling patients to book consultations, vaccinations, and healthcare services through a seamless online experience. Designed to handle real appointments, secure payments, and streamlined healthcare workflows.',
+
+  highlights: [
+    'Built a complete patient booking journey from service selection to appointment confirmation',
+    'Integrated secure phone verification and Stripe payments for healthcare bookings',
+    'Developed an admin portal for appointment management, payments, and content updates',
+    'Optimized SEO and performance to improve visibility and drive organic patient bookings'
+  ],
+
+  tech: [
+    'Next.js',
+    'React',
+    'framer-motion',
+    'Tailwind CSS',
+    'Java',
+    'AWS Lambda',
+    'DynamoDB',
+    'Stripe'
+  ],
+
+  links: {
+    demo: 'https://bishopswalthampharmacy.co.uk/',
+  }
+},
+{
+  title: 'ASWRA Health Monitoring Platform',
+  image: './aswra.png',
+  accent: 'purple',
+
+  description:
+    'A cloud-native healthcare monitoring platform built on AWS serverless infrastructure. Designed to manage patient health data, connected medical devices, real-time alerts, and role-based healthcare operations while delivering secure, scalable, and highly available services.',
+
+  highlights: [
+    'Built a serverless backend architecture with 10+ AWS Lambda services powering authentication, user management, device monitoring, and healthcare workflows',
+    'Developed a secure role-based access system supporting administrators, vendors, and end users with JWT authentication and granular permissions',
+    'Implemented real-time notification and alert pipelines for health vitals, device events, and operational updates using asynchronous event-driven patterns',
+    'Created analytics and aggregation services for healthcare metrics, enabling advanced search, reporting, and operational insights across large datasets'
+  ],
+
+  tech: [
+    'Java',
+    'AWS Lambda',
+    'DynamoDB',
+    'RDS MySQL',
+    'API Gateway',
+    'JWT',
+    'REST APIs',
+    'Maven',
+    'Firebase FCM'
+  ],
+
+  links: {
+    demo: 'http://aswra-prod.s3-website.ap-south-1.amazonaws.com/login/',
+  }
+},
+{
+  title: 'MyVault — AI-Powered Finance Platform',
+  image: './vault.png',
+  accent: 'orange',
+
+  description:
+    'A full-stack personal finance platform that combines AI-powered expense tracking, intelligent receipt processing, and real-time financial insights. Designed to help users manage transactions, monitor spending habits, and make smarter financial decisions through an intuitive dashboard experience.',
+
+  highlights: [
+    'Built an AI-powered receipt scanner that automatically extracts transaction details from uploaded receipts using Gemini AI',
+    'Developed a complete finance management system with transaction tracking, expense categorization, and income monitoring',
+    'Created interactive analytics dashboards with spending trends, category breakdowns, and real-time financial insights',
+    'Implemented secure authentication, background job processing, and protected APIs for a scalable production-ready experience'
+  ],
+
+  tech: [
+    'Next.js',
+    'React',
+    'TypeScript',
+    'Supabase',
+    'Prisma',
+    'Tailwind CSS',
+    'Shadcn UI',
+    'Gemini AI',
+    'Inngest',
+    'ArcJet'
+  ],
+
+  links: {
+    demo: 'https://my-vault-two.vercel.app/',
+    github: 'https://github.com/Madhur1707/MyVault'
+  }
+},
+ {
+  title: 'HiredHub — AI Recruitment Platform',
+  image: './HiredHub.png',
+  accent: 'green',
+
+  description:
+    'An AI-powered recruitment platform that streamlines the hiring process for both recruiters and candidates. Recruiters can manage job postings, review applications, and leverage AI-assisted candidate shortlisting, while job seekers can discover opportunities and apply through a modern, responsive experience.',
+
+  highlights: [
+    'Built a complete hiring workflow with job posting, application management, candidate tracking, and recruitment analytics',
+    'Integrated Gemini AI to automatically evaluate and shortlist candidates based on job requirements and submitted resumes',
+    'Implemented secure role-based authentication for recruiters and candidates with protected routes and personalized dashboards',
+    'Developed advanced job search, filtering, and application management features with a responsive user experience'
+  ],
+
+  tech: [
+    'React',
+    'JavaScript',
+    'Tailwind CSS',
+    'Shadcn UI',
+    'Supabase',
+    'Clerk',
+    'Gemini AI',
+    'Vercel'
+  ],
+
+  links: {
+    demo: 'https://hired-hub-two.vercel.app/',
+    github: 'https://github.com/Madhur1707/HiredHub'
+  }
+}
 ];
 
 export const education = [
