@@ -339,14 +339,14 @@ export const contactCards = [
   {
     label: 'LinkedIn',
     value: 'linkedin.com/in/madhurpathak',
-    href: 'https://www.linkedin.com/',
+    href: 'https://www.linkedin.com/in/madhurpathak/',
     icon: '/linkedin.png',
     accent: 'purple',
   },
   {
     label: 'GitHub',
     value: 'github.com/madhurpathak',
-    href: 'https://github.com/',
+    href: 'https://github.com/Madhur1707',
     icon: '/github.png',
     accent: 'orange',
   },
