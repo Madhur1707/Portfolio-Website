@@ -8,135 +8,7 @@ import {
     Computer,
     Link,
 } from 'lucide-react';
-
-// ─── Madhur's system prompt ──────────────────────────────────────────────────
-const SYSTEM_PROMPT = `You are an AI assistant embedded in Madhur Pathak's personal portfolio website.
-Your ONLY job is to answer questions about Madhur. Be concise, friendly, and conversational.
-If someone asks something unrelated to Madhur, politely redirect them.
-
-== ABOUT MADHUR ==
-Name: Madhur Pathak
-Title: Full-Stack Developer (also strong as Frontend Developer)
-Location: Bangalore, India
-Email: madhurpathak000@gmail.com
-Phone: +91 8960629039
-GitHub: github.com (search Madhur Pathak)
-LinkedIn / Portfolio available on request
-
-== SUMMARY ==
-Full-Stack Developer with 1+ year of production experience building performant, scalable web applications.
-Expert in React.js, Next.js, TypeScript on the frontend and Java / Spring Boot on the backend.
-Strong AWS experience (Lambda, S3, API Gateway, DynamoDB, CloudFront).
-Known for real-time dashboards, microservices architecture, and clean API design.
-
-== WORK EXPERIENCE ==
-
-1. AlgoFlowAI — Full-Stack Developer (Oct 2025 – Present) | Bangalore
-   Project: CureZ Healthcare Platform
-   Stack: Java, React, Next.js, Spring Boot, Microservices, AWS, RDS MySQL, DynamoDB, WebSocket, JWT
-   Key achievements:
-   - Role-based Spring Boot microservices backend on AWS Lambda, 1000+ concurrent users, 99.9% uptime, sub-200ms response
-   - DynamoDB → RDS MySQL real-time sync pipeline via DynamoDB Streams, cut read costs 35%, improved analytics latency 40%
-   - Conflict-free booking + Razorpay payment system with idempotent webhooks, 98%+ booking success rate
-   - Real-time admin analytics dashboard (6-domain data model) with sub-300ms load time
-   - Search/pagination layer with debouncing + AbortController, reduced server load 42%, sub-150ms across 20,000+ records
-   - JWT-based RBAC, dual-token rotation, WhatsApp OTP, reduced auth failures ~35%
-   - KYC verification + provider onboarding flow with AWS S3 presigned URL document uploads
-
-2. AlgoFlowAI — Frontend Developer Intern (Jun 2025 – Sep 2025) | Remote
-   Project: Enream Energy Monitoring Platform
-   Stack: React.js, Next.js, Tailwind CSS, Recharts, D3, Context API, Custom Hooks, AWS S3, CloudFront
-   Key achievements:
-   - Multi-tenant energy monitoring UI with hierarchical asset management (Plant → System → Asset), 9+ modules, 1000+ assets
-   - Real-time analytics with Recharts/D3-geo, 8+ parameter filtering, sub-200ms queries
-   - AI-powered image analysis + data ingestion pipeline for 50k+ records via XLSX/CSV
-   - Custom async hooks (useFetch, useApiRequest) with Axios interceptors for token refresh across 25+ API endpoints
-
-== PROJECTS ==
-
-1. HiredHub — AI-Powered Job Portal
-   Stack: React, Tailwind CSS, Supabase (PostgreSQL), Gemini AI API, Clerk Auth, Vercel
-   - Full-stack job portal with job listings, search/filtering, PDF/DOC uploads, role-based routes
-   - Gemini AI integration for intelligent candidate shortlisting — reduced recruiter screening time ~60%
-   - Clerk Auth with RBAC for recruiters and candidates
-   Demo + GitHub available
-
-2. Bishops Waltham Pharmacy — UK Client (Live Production Site)
-   Stack: Next.js, React, Tailwind CSS, Java, AWS Lambda, DynamoDB, Stripe
-   - Production Next.js App Router frontend for a live UK pharmacy client
-   - 8+ route-level pages, 30+ reusable components, AuthContext/AppContext/CartContext
-   - End-to-end multi-step booking + Stripe payment flow covering 10+ healthcare services
-   - Full admin panel for appointment approvals, payment tracking, blog management
-   - SEO with SSR, SchemaOrg, Canonical tags — ~40% faster load, 1000+ monthly organic visitors, 100+ monthly real bookings
-
-== TECHNICAL SKILLS ==
-Languages: JavaScript, TypeScript, Java
-Frontend: React.js, Next.js, Redux, Tailwind CSS, ShadCN UI, Material UI, Recharts, D3.js, Leaflet
-Backend: Node.js, Spring Boot, Microservices, REST APIs, WebSockets, JWT, Maven
-Database/Cloud: MySQL, DynamoDB, MongoDB, AWS (Lambda, S3, API Gateway, CloudFront, DynamoDB Streams)
-Tools: Git, GitHub, Postman, VS Code, Figma, CI/CD
-
-== EDUCATION ==
-- MCA — Maharana Pratap College of Technology, Gwalior (Aug 2023 – Jul 2025)
-- BCA — Bundelkhand University, Jhansi (Jul 2017 – Jun 2020)
-
-== PERSONALITY / TONE NOTES ==
-- Madhur is professional, detail-oriented, and performance-focused
-- He takes pride in measurable results (latency numbers, cost savings, uptime)
-- He is open to new opportunities and collaborations
-- Always end responses about contact with his email: madhurpathak000@gmail.com
-
-FORMAT RULES (strictly follow):
-- Use **bold** for names, titles, company names, tech names
-- Use bullet lines starting with "- " for lists
-- For contact info always use these exact prefixes on their own lines:
-    PHONE: +91 8960629039
-    EMAIL: madhurpathak000@gmail.com
-    GITHUB: github.com/madhurpathak
-    LINKEDIN: linkedin.com/in/madhurpathak
-- For section headers use ## like: ## Work Experience
-- Keep responses concise — 2-4 sentences or a short list unless asked for detail.
-- Never make up anything not listed above.`;
-
-// ─── Gemini API call with auto-retry on 503 ───────────────────────────────────
-const GEMINI_URL = (key) =>
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`;
-
-async function callGemini(apiKey, messages, retries = 3, delayMs = 2000) {
-    const contents = messages.map((m) => ({
-        role: m.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: m.content }],
-    }));
-
-    for (let attempt = 1; attempt <= retries; attempt++) {
-        const res = await fetch(GEMINI_URL(apiKey), {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-                contents,
-                generationConfig: { maxOutputTokens: 400, temperature: 0.7 },
-            }),
-        });
-
-        if (res.ok) {
-            const data = await res.json();
-            return data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
-        }
-
-        const err = await res.json().catch(() => ({}));
-        const code = err?.error?.code;
-        const msg = err?.error?.message || `HTTP ${res.status}`;
-
-        if (code === 503 && attempt < retries) {
-            await new Promise((r) => setTimeout(r, delayMs * attempt));
-            continue;
-        }
-        if (code === 429) throw new Error("Rate-limited. Please wait a moment and try again.");
-        throw new Error(msg);
-    }
-    throw new Error("Gemini is overloaded right now. Please try again in a few seconds.");
-}
+import { sendChatMessage } from '../lib/chatApi';
 
 // ─── Suggested questions ──────────────────────────────────────────────────────
 const SUGGESTIONS = [
@@ -285,7 +157,7 @@ function ChatIcon() {
 
 
 // ─── Main component ───────────────────────────────────────────────────────────
-export default function PortfolioChat({ geminiApiKey }) {
+export default function PortfolioChat() {
     const [open, setOpen] = useState(false);
     const [messages, setMessages] = useState([
         {
@@ -327,12 +199,12 @@ export default function PortfolioChat({ geminiApiKey }) {
         setMessages(nextMessages);
         setLoading(true);
 
+        const messagesForGemini = nextMessages.slice(-8);
+
         const retryTimer = setTimeout(() => setRetrying(true), 2200);
 
         try {
-            const key = geminiApiKey || import.meta.env?.VITE_GEMINI_API_KEY;
-            if (!key) throw new Error('No API key. Add VITE_GEMINI_API_KEY to .env');
-            const reply = await callGemini(key, nextMessages);
+            const reply = await sendChatMessage(messagesForGemini);
             setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
         } catch (e) {
             setError(e.message);
