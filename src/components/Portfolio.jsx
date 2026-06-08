@@ -10,15 +10,10 @@ import Contact from './contact/Contact';
 import Projects from './projects/Projects';
 import Education from './education/Education';
 import Footer from './layout/Footer';
+import PortfolioChat from './PortfolioChat';
 
 
 
-
-/**
- * Portfolio — root layout for the developer portfolio.
- * Composes layout + sections in display order and renders a brief
- * boot-style loading overlay on first mount.
- */
 export default function Portfolio() {
     const [loading, setLoading] = useState(true);
 
@@ -52,6 +47,7 @@ export default function Portfolio() {
             </main>
 
             <Footer />
+            {!loading && <PortfolioChat/>}
         </div>
     );
 }
