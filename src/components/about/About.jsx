@@ -53,18 +53,18 @@ const timelineItems = [
   {
     accent: 'green',
     date: 'Jun 2025 — Sep 2025',
-    title: 'Frontend Developer Intern',
-    company: 'AlgoFlowAI • Enream Energy Platform',
+    title: 'Full-Stack Developer Intern',
+    company: 'AlgoFlowAI • Bishops Waltham Pharmacy',
     description:
-      'Built real-time energy monitoring dashboards, analytics systems, and scalable frontend architecture for industrial energy platforms.',
+      'Co-built a live serverless booking platform for a UK pharmacy — a 5-step appointment flow with real-time OTP verification, Stripe payments, and SEO-optimized pages on AWS S3 + CloudFront.',
   },
   {
     accent: 'purple',
     date: 'Oct 2025 — Present',
-    title: 'Full-Stack Software Developer',
+    title: 'Full-Stack Developer',
     company: 'AlgoFlowAI • CureZ Healthcare',
     description:
-      'Building healthcare products across frontend, backend, databases, cloud infrastructure, analytics, payments, and scalable APIs.',
+      'Building a healthcare platform end-to-end — Spring Boot & serverless APIs, real-time admin dashboards, a DynamoDB-to-RDS pipeline, and OTP-secured JWT authorization.',
   },
   {
     accent: 'orange',
@@ -159,22 +159,23 @@ export default function About() {
             <p className="text-white/75 text-base sm:text-lg leading-relaxed">
               I&apos;m{' '}
               <span className="text-white font-medium">{personal.name}</span>{' '}
-              — a Full-Stack Developer focused on{' '}
+              — a Full-Stack Developer with 1+ years focused on{' '}
               <span className="text-neon-green">React</span>,{' '}
               <span className="text-neon-cyan">Next.js</span>,{' '}
               <span className="text-neon-purple">Java</span>,{' '}
               <span className="text-neon-purple">Spring Boot</span>, and{' '}
               <span className="text-neon-orange">AWS Cloud</span>.
-              I&apos;ve shipped production healthcare and energy platforms —
-              owning the slice from real-time UI all the way down to Lambdas,
-              API Gateway and DynamoDB.
+              I&apos;ve engineered production healthcare platforms end-to-end —
+              owning the slice from real-time dashboards all the way down to
+              Lambdas, API Gateway, and DynamoDB.
             </p>
 
             <p className="text-white/65 text-base leading-relaxed mt-4">
               I care about latency, clean component architecture, and code that
-              other engineers can extend without flinching. Recently: cut
-              data-retrieval latency by 50% and shipped 15+ Lambda functions
-              powering a healthcare platform with strict compliance requirements.
+              other engineers can extend without flinching. Recently I shipped
+              30+ serverless REST APIs and an event-driven DynamoDB-to-RDS
+              pipeline that cut report latency from ~3s to 150ms — plus an
+              OTP-secured JWT authorizer enforcing role-based access.
             </p>
 
             <div className="mt-auto pt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">

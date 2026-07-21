@@ -19,43 +19,42 @@ Known for real-time dashboards, microservices architecture, and clean API design
 
 == WORK EXPERIENCE ==
 
-1. AlgoFlowAI - Full-Stack Developer (Oct 2025 - Present) | Bangalore
+1. AlgoFlowAI - Full-Stack Developer (Oct 2025 - Present) | Remote
    Project: CureZ Healthcare Platform
-   Stack: Java, React, Next.js, Spring Boot, Microservices, AWS, RDS MySQL, DynamoDB, WebSocket, JWT
+   Stack: Java 21, Spring Boot, Microservices, AWS Lambda, API Gateway, DynamoDB, RDS MySQL, React, Next.js, Tailwind CSS, JWT
    Key achievements:
-   - Role-based Spring Boot microservices backend on AWS Lambda, 1000+ concurrent users, 99.9% uptime, sub-200ms response
-   - DynamoDB -> RDS MySQL real-time sync pipeline via DynamoDB Streams, cut read costs 35%, improved analytics latency 40%
-   - Conflict-free booking + Razorpay payment system with idempotent webhooks, 98%+ booking success rate
-   - Real-time admin analytics dashboard (6-domain data model) with sub-300ms load time
-   - Search/pagination layer with debouncing + AbortController, reduced server load 42%, sub-150ms across 20,000+ records
-   - JWT-based RBAC, dual-token rotation, WhatsApp OTP, reduced auth failures ~35%
-   - KYC verification + provider onboarding flow with AWS S3 presigned URL document uploads
+   - Built 30+ serverless REST APIs (Java 21, Spring Boot, AWS Lambda, API Gateway, DynamoDB) powering core healthcare workflows
+   - Event-driven DynamoDB Streams pipeline mirroring 10 tables to Amazon RDS, cut report latency from 2-3s to 150ms
+   - Custom JWT Lambda Authorizer with OTP-based login and role-based access control across 3 user roles
+   - Led the CureZ Admin Dashboard (Next.js, React, Tailwind CSS) delivering 7 operational modules
+   - Optimized data fetching across 20+ REST APIs with Axios interceptors, server-side pagination, AbortController
 
-2. AlgoFlowAI - Frontend Developer Intern (Jun 2025 - Sep 2025) | Remote
-   Project: Enream Energy Monitoring Platform
-   Stack: React.js, Next.js, Tailwind CSS, Recharts, D3, Context API, Custom Hooks, AWS S3, CloudFront
+2. AlgoFlowAI - Full-Stack Developer Intern (Jun 2025 - Sep 2025) | Remote
+   Project: Bishops Waltham Pharmacy (Live UK Production Site)
+   Stack: Next.js, React, Tailwind CSS, Java, AWS Lambda, DynamoDB, Stripe, REST APIs
    Key achievements:
-   - Multi-tenant energy monitoring UI with hierarchical asset management (Plant -> System -> Asset), 9+ modules, 1000+ assets
-   - Real-time analytics with Recharts/D3-geo, 8+ parameter filtering, sub-200ms queries
-   - AI-powered image analysis + data ingestion pipeline for 50k+ records via XLSX/CSV
-   - Custom async hooks (useFetch, useApiRequest) with Axios interceptors for token refresh across 25+ API endpoints
+   - Co-designed a serverless healthcare booking platform with secure Stripe payments, OTP notifications, JWT authentication
+   - Built a 5-step appointment booking flow with real-time OTP verification (Next.js, React, AWS REST APIs)
+   - Deployed 13 optimized static pages to AWS S3 + CloudFront with JSON-LD, dynamic sitemaps, and canonical tags for SEO
+   - Reduced duplicate requests via request deduplication + localStorage-backed React Context preserving booking progress
 
 == PROJECTS ==
 
-1. HiredHub - AI-Powered Job Portal
-   Stack: React, Tailwind CSS, Supabase (PostgreSQL), Gemini AI API, Clerk Auth, Vercel
-   - Full-stack job portal with job listings, search/filtering, PDF/DOC uploads, role-based routes
-   - Gemini AI integration for intelligent candidate shortlisting - reduced recruiter screening time ~60%
-   - Clerk Auth with RBAC for recruiters and candidates
-   Demo + GitHub available
+1. Vivran.ai - AI Meeting Intelligence Platform
+   Stack: Next.js, FastAPI, Python, Supabase, Deepgram, Groq, Cerebras, Chrome Extension
+   - Full-stack AI platform automating meeting capture via a web app, FastAPI backend, and custom Chrome Extension
+   - Deepgram STT transcription + speaker diarization, with Groq LLMs generating summaries and action items
+   - Map-reduce text processing pipeline with retries to handle transcripts exceeding LLM context limits
+   - Hybrid vector + keyword search with chunked indexing for fast semantic retrieval across workspaces
+   Live + GitHub available
 
-2. Bishops Waltham Pharmacy - UK Client (Live Production Site)
-   Stack: Next.js, React, Tailwind CSS, Java, AWS Lambda, DynamoDB, Stripe
-   - Production Next.js App Router frontend for a live UK pharmacy client
-   - 8+ route-level pages, 30+ reusable components, AuthContext/AppContext/CartContext
-   - End-to-end multi-step booking + Stripe payment flow covering 10+ healthcare services
-   - Full admin panel for appointment approvals, payment tracking, blog management
-   - SEO with SSR, SchemaOrg, Canonical tags - ~40% faster load, 1000+ monthly organic visitors, 100+ monthly real bookings
+2. Localoom - AI-Powered Real-Time Collaboration Editor
+   Stack: Next.js, React, TypeScript, Yjs (CRDT), Node.js WebSockets, PostgreSQL, Prisma, Auth.js
+   - Local-first editor with Yjs CRDTs + IndexedDB for real-time multi-user editing, live cursors, and offline sync
+   - Node.js WebSocket sync server with delta-based reconnection + log compaction for reliable PostgreSQL persistence
+   - Three-layer security with RBAC (Owner/Editor/Viewer) using Auth.js, signed JWTs, and Zod validation
+   - Embedded Groq-powered AI assistant with streaming responses for generation, summarization, and version history
+   Live + GitHub available
 
 == TECHNICAL SKILLS ==
 Languages: JavaScript, TypeScript, Java

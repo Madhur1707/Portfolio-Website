@@ -20,7 +20,7 @@ export const personal = {
   status: 'Available for Opportunities',
 
   summary:
-    'I am a Full-Stack Developer who enjoys building products from idea to production. My experience includes developing healthcare and energy management platforms using React, Next.js, Java, Spring Boot, and AWS. I enjoy creating clean user experiences, scalable backend systems, and solving real-world problems through software.',
+    'Full-Stack Developer with 1+ years engineering scalable web platforms, serverless microservices, and AI-driven products with Java, Spring Boot, React, and Next.js. I build healthcare systems end-to-end — from real-time dashboards to secure AWS cloud APIs — obsessing over performance, low latency, and clean architecture.',
 
   typewriterPhrases: [
     'Full-Stack Developer',
@@ -58,7 +58,7 @@ export const devConfig = {
     "  role: 'Full-Stack Developer',",
     "  stack: ['React', 'Next.js', 'Java', 'AWS'],",
     "  building: 'Scalable Web Applications',",
-    "  experience: ['Healthcare', 'Energy Monitoring'],",
+    "  experience: ['Healthcare', 'AI Platforms'],",
     "  interests: ['AI', 'Cloud', 'System Design'],",
     "  favouriteThing: 'Turning Ideas Into Products',",
     "  status: 'Available For Opportunities',",
@@ -71,37 +71,36 @@ export const devConfig = {
 export const experience = [
   {
     company: 'AlgoFlowAI',
-    role: 'Full-Stack Software Developer — CureZ Healthcare Platform',
+    role: 'Full-Stack Developer — CureZ Healthcare Platform',
     period: 'Oct 2025 — Present',
-    location: 'Bangalore, IN',
+    location: 'Remote',
     accent: 'green',
     summary:
-      'Building a production-grade healthcare platform from the ground up — Spring Boot microservices on AWS, real-time admin dashboards, booking engines, and payment pipelines serving 1000+ concurrent users.',
+      'Engineering a production healthcare platform end-to-end — Java 21 & Spring Boot serverless microservices on AWS, real-time admin dashboards, and low-latency data pipelines.',
     bullets: [
-      'Designed a role-based Spring Boot microservices architecture deployed on AWS Lambda — each domain service independently scaled behind API Gateway, supporting 1000+ concurrent users across Admin, Provider, and Customer roles with 99.9% uptime.',
-      'Built a real-time admin analytics dashboard with Next.js and Recharts — tracking bookings, revenue, providers, and payments across 6 domains with memoized 7/30/90-day trends and sub-300ms load times.',
-      'Engineered a conflict-free booking and payment system — real-time slot locking, full Razorpay integration with idempotent webhook processing, dynamic commission calculations, and automated refunds achieving 98%+ booking success.',
-      'Set up a DynamoDB-to-RDS MySQL sync pipeline using DynamoDB Streams — offloading heavy analytics queries to RDS, cutting read costs by 35% and improving query latency by 40%.',
-      'Built a performant search and pagination layer with request debouncing, AbortController cancellation, and multi-select filtering across 12+ columns — reducing server load by 42% across 20,000+ records.',
-      'Architected a reusable component system with custom hooks and Context API across patient, hospital, and appointment modules — cutting prop-drilling and improving code reuse by 50%.',
+      'Shipped 30+ serverless REST APIs with Java 21, Spring Boot, AWS Lambda, API Gateway, and DynamoDB to power core healthcare workflows.',
+      'Designed an event-driven DynamoDB Streams pipeline that mirrors 10 tables into Amazon RDS — collapsing report latency from 2–3 seconds down to 150ms.',
+      'Built a custom JWT Lambda Authorizer with OTP-based login and role-based access control, enforcing stateless authorization across 3 user roles.',
+      'Led the CureZ Admin Dashboard in Next.js, React, and Tailwind CSS — delivering 7 operational modules for day-to-day healthcare operations.',
+      'Tuned data fetching across 20+ REST APIs with Axios interceptors, JWT auth, server-side pagination, and AbortController-based request cancellation.',
     ],
-    tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Java', 'Spring Boot', 'AWS Lambda', 'API Gateway', 'DynamoDB', 'RDS MySQL', 'Recharts', 'Razorpay', 'JWT', 'Maven'],
+    tech: ['Java', 'Spring Boot', 'Microservices', 'AWS Lambda', 'API Gateway', 'DynamoDB', 'RDS MySQL', 'React', 'Next.js', 'Tailwind CSS', 'JWT', 'Axios'],
   },
   {
-    company: 'AlgoFlowAI — Enream Project',
-    role: 'Frontend Developer Intern',
+    company: 'AlgoFlowAI',
+    role: 'Full-Stack Developer Intern — Bishops Waltham Pharmacy',
     period: 'Jun 2025 — Sep 2025',
     location: 'Remote',
     accent: 'cyan',
     summary:
-      'Owned the entire frontend of an enterprise energy monitoring platform — real-time dashboards, AI-powered analysis, and a data ingestion pipeline handling 100K+ records, deployed on AWS.',
+      'Co-built a live serverless booking platform for a UK pharmacy — secure payments, real-time OTP verification, and an SEO-first frontend deployed on AWS S3 + CloudFront.',
     bullets: [
-      'Architected a multi-tenant energy monitoring UI in Next.js/React with hierarchical asset management (Plant → System → Asset), role-based dashboards, and real-time data across 9+ modules for 1000+ physical assets.',
-      'Built a dynamic analytics dashboard with Recharts and D3-geo — 8+ parameter filtering, dynamic severity classification, and sub-200ms query response across 1000+ assets.',
-      'Engineered an AI-powered image analysis module with 30–50% compression, severity detection, and structured field extraction — plus a data ingestion pipeline handling 100K+ records via XLSX/CSV with S3 presigned uploads and batch validation.',
-      'Deployed the full application on AWS S3 + CloudFront across multiple regions — achieving sub-2-minute CI/CD cycles and consistent global performance.',
+      'Co-designed and shipped a serverless healthcare booking platform with secure Stripe payments, OTP notifications, and JWT authentication.',
+      'Built a smooth 5-step appointment booking flow with real-time OTP verification using Next.js, React, and AWS REST APIs.',
+      'Deployed 13 optimized static pages to AWS S3 and CloudFront — layering in JSON-LD, dynamic sitemaps, and canonical tags for strong organic SEO.',
+      'Cut duplicate submissions with request deduplication and a localStorage-backed React Context that preserved booking progress across steps.',
     ],
-    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Recharts', 'D3.js', 'Context API', 'Custom Hooks', 'AWS S3', 'CloudFront', 'REST APIs'],
+    tech: ['Next.js', 'React', 'Tailwind CSS', 'Java', 'AWS Lambda', 'DynamoDB', 'Stripe', 'REST APIs'],
   },
 ];
 
@@ -148,6 +147,69 @@ export const skillGroups = [
 
 
 export const projects = [
+  {
+  title: 'Vivran.ai — AI Meeting Intelligence Platform',
+  image: './vivranai.png',
+  accent: 'cyan',
+
+  description:
+    'A full-stack AI platform that automates meeting capture, transcription, and knowledge retrieval. Combines a Next.js web app, a FastAPI backend, and a custom Chrome Extension to turn live meetings into searchable summaries, action items, and semantic insights.',
+
+  highlights: [
+    'Built a full-stack AI platform with Next.js, FastAPI, Supabase, and a custom Chrome Extension to automate meeting capture workflows',
+    'Integrated Deepgram for speech-to-text transcription and speaker diarization, with Groq LLMs generating meeting summaries and action items',
+    'Engineered a robust map-reduce text processing pipeline with retry mechanisms to reliably handle transcripts exceeding LLM context limits',
+    'Implemented hybrid vector and keyword search with chunked indexing for rapid, semantic retrieval across meeting workspaces'
+  ],
+
+  tech: [
+    'Next.js',
+    'FastAPI',
+    'Python',
+    'Supabase',
+    'Deepgram',
+    'Groq',
+    'Cerebras',
+    'Chrome Extension'
+  ],
+
+  links: {
+    demo: 'https://vivran-ai.vercel.app/',
+    github: 'https://github.com/Madhur1707/Vivran-AI'
+  }
+},
+{
+  title: 'Localoom — AI-Powered Real-Time Collaboration Editor',
+  image: './localoom.png',
+  accent: 'purple',
+
+  description:
+    'A local-first, real-time collaborative document editor built for seamless multi-user editing with live cursors and offline sync. Backed by CRDTs and a custom WebSocket sync server, it delivers reliable persistence, granular access control, and an embedded AI writing assistant.',
+
+  highlights: [
+    'Engineered a local-first editor with Yjs CRDTs and IndexedDB, enabling real-time multi-user editing, live cursors, and offline sync',
+    'Developed a Node.js WebSocket sync server with delta-based reconnection and log compaction for reliable PostgreSQL persistence',
+    'Enforced a strict three-layer security model with RBAC (Owner/Editor/Viewer) using Auth.js, signed JWTs, and Zod schema validation',
+    'Embedded a Groq-powered AI assistant with streaming responses for text generation, contextual summarization, and version history'
+  ],
+
+  tech: [
+    'Next.js',
+    'React',
+    'TypeScript',
+    'Yjs (CRDT)',
+    'Node.js',
+    'WebSockets',
+    'PostgreSQL',
+    'Prisma',
+    'Auth.js'
+  ],
+
+  links: {
+    demo: 'https://localoom-rho.vercel.app/',
+    github: 'https://github.com/Madhur1707/Localoom'
+  }
+},
   {
   title: 'CureZ Healthcare Platform',
   image: './curez.png',
@@ -271,37 +333,6 @@ export const projects = [
   links: {
     demo: 'https://my-vault-two.vercel.app/',
     github: 'https://github.com/Madhur1707/MyVault'
-  }
-},
- {
-  title: 'HiredHub — AI Recruitment Platform',
-  image: './HiredHub.png',
-  accent: 'green',
-
-  description:
-    'An AI-powered recruitment platform that streamlines the hiring process for both recruiters and candidates. Recruiters can manage job postings, review applications, and leverage AI-assisted candidate shortlisting, while job seekers can discover opportunities and apply through a modern, responsive experience.',
-
-  highlights: [
-    'Built a complete hiring workflow with job posting, application management, candidate tracking, and recruitment analytics',
-    'Integrated Gemini AI to automatically evaluate and shortlist candidates based on job requirements and submitted resumes',
-    'Implemented secure role-based authentication for recruiters and candidates with protected routes and personalized dashboards',
-    'Developed advanced job search, filtering, and application management features with a responsive user experience'
-  ],
-
-  tech: [
-    'React',
-    'JavaScript',
-    'Tailwind CSS',
-    'Shadcn UI',
-    'Supabase',
-    'Clerk',
-    'Gemini AI',
-    'Vercel'
-  ],
-
-  links: {
-    demo: 'https://hired-hub-two.vercel.app/',
-    github: 'https://github.com/Madhur1707/HiredHub'
   }
 }
 ];
